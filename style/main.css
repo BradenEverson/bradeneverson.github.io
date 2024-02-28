@@ -8,6 +8,7 @@
     --iceberg-blue: #9ecdf7;
     --iceberg-green: #668e3d;
     --iceberg-purple: #6845ad;
+    --iceberg-lilac: #a28ad0; 
 }
 
 /**
@@ -43,6 +44,11 @@
     color: var(--iceberg-green)
 }
 
+.color-lilac {
+    color: var(--iceberg-lilac)
+}
+
+
 /**
  * Document styling
  **/
@@ -56,4 +62,37 @@ body {
 
 .header {
     font-size: 1.4rem;
+}
+
+.heavy-glow {
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+.glow {
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.project-link {
+    font-size: 1.2rem;
+}
+
+.job-sec{
+    margin-top: 4rem;
+}
+
+
+.profile {
+    width: 12vw;
+    height: 12vw;
+    max-width: 50vh;
+    max-height: 50vh;
+
+    border-radius: 50%;
+
+    filter: grayscale(100%) sepia(50%) hue-rotate(180deg) brightness(90%) saturate(150%);
+
+    margin-bottom: 2rem;
+
+    object-fit: cover;
+
 }
