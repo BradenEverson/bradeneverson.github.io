@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
+
+:root {
+    --iceberg-gray: #8389a4;
+    --iceberg-dark-gray: #212331;
+    --iceberg-white: #dcdfe7;
+    --iceberg-red: #d55d85;
+    --iceberg-blue: #9ecdf7;
+    --iceberg-green: #668e3d;
+    --iceberg-purple: #6845ad;
+}
+
+/**
+ * Colors classes
+ **/
+
+.color-white {
+    color: var(--iceberg-white);
+}
+
+.color-red {
+    color: var(--iceberg-red);
+}
+
+
+.color-green {
+    color: var(--iceberg-green);
+}
+
+.color-purple {
+    color: var(--iceberg-purple);
+}
+
+.color-gray{
+    color: var(--iceberg-gray)
+}
+
+.color-blue{
+    color:var(--iceberg-blue)
+}
+
+.color-green {
+    color: var(--iceberg-green)
+}
+
+/**
+ * Document styling
+ **/
+
+body {
+    background-color: var(--iceberg-dark-gray);
+    color: var(--iceberg-white);
+    font-family: 'Inconsolata', monospace;
+    font-size: 1rem;
+}
+
+.header {
+    font-size: 1.4rem;
+}
