@@ -9,11 +9,16 @@
     --iceberg-green: #668e3d;
     --iceberg-purple: #6845ad;
     --iceberg-lilac: #a28ad0; 
+    --iceberg-yellow:rgb(223, 206, 55) ;
 }
 
 /**
  * Colors classes
  **/
+
+.color-yellow {
+    color: var(--iceberg-yellow);
+}
 
 .color-white {
     color: var(--iceberg-white);
@@ -95,4 +100,16 @@ body {
 
     object-fit: cover;
 
+}
+
+:root {
+    --background: var(--iceberg-dark-gray);
+}
+
+.left-term-2 {
+    margin-left: 2rem;
+}
+
+.left-term-4 {
+    margin-left: 4rem;
 }
