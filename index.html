@@ -1,289 +1,202 @@
-<!-- saved from url=(0023)https://claymcleod.dev/ -->
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="./style/main.css" />
-        <link rel="stylesheet" href="./style/tw.css" />
-    </head>
+<!DOCTYPE html>
+<html lang="en">
 
-    <body class="print:text-xs">
-        <main class="max-w-4xl mx-auto py-5 lg:py-20 px-5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+    <link rel="stylesheet" href="./style/styles.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+
+<body>
+    <div class="container">
+        <header>
             <header class="flex justify-center">
-                <img src="./files/me.png" class="profile"/>
-                <!--<a href="mailto:bradeneverson@gmail.com"><span class="underline color-gray">Work Experience</span></a>
-                <a href="https://github.com/BradenEverson">
-                    <span class="underline color-gray">My Projects</span>
-                </a>-->
+                <img src="./files/me.png" class="profile" />
             </header>
-            <header class="flex justify-center header">
-                <h1 class="font-bold heavy-glow">Braden Everson</h1>
-            </header>
-            <br />
-            <div class="flex justify-between color-blue glow">
-                <a href="mailto:bradeneverson@gmail.com"><span class="underline">Email</span></a>
+            <h1>Braden Everson 🦀</h1>
+            <nav>
+                <ul>
+                    <li><a href="mailto:bradeneverson@gmail.com"><span class="underline">Email</span></a></li>
 
-                <a href="https://linkedin.com/in/braden-everson">
-                    <span class="underline">LinkedIn</span>
-                </a>
+                    <li>
+                        <a href="https://linkedin.com/in/braden-everson">
+                            <span class="underline">LinkedIn</span>
+                        </a>
+                    </li>
 
-                <a href="https://github.com/BradenEverson">
-                    <span class="underline">GitHub</span>
-                </a>
 
-                <a href="https://crates.io/users/BradenEverson">
-                    <span class="underline">Crates.io</span>
-                </a>
-                <a href="./files/Braden Everson.pdf" download>
-                    <span class="underline">Resume</span>
-                </a>
+                    <li>
+                        <a href="https://github.com/BradenEverson">
+                            <span class="underline">GitHub</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://crates.io/users/BradenEverson">
+                            <span class="underline">Crates.io</span>
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="./files/Braden Everson.pdf" download>
+                            <span class="underline">Resume</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="summary">
+            <h2>Summary</h2>
+            <div class="summary">
+                <h3>B.S. Computer Science student at MSOE with internship experience working as a full stack software
+                    engineer as well as numerous diverse hands-on team-based project experiences. Devoting 10 hours per
+                    week to personal projects in addition to 20 hours per week working part time as a hybrid machine
+                    learning engineering intern while maintaining a full academic schedule. Skills in Rust, C, C++,
+                    Python, Data Science, and Machine Learning </h3>
             </div>
-            
-            <div class="mt-10">
-                <h2 class="text-gray-400 uppercase">Summary</h2>
-                <p class="mt-5 lg:mx-10">
-                    B.S. Computer Science student at MSOE with internship experience working as a full stack software
-                    engineer as well as
-                    numerous diverse hands-on team-based project experiences. Devoting 10 hours per week to personal
-                    projects in addition to
-                    20 hours per week working part time as a hybrid machine learning engineering intern while maintaining a
-                    full academic
-                    schedule. Skills in Rust, C, C++, Python, Data Science, and Machine Learning
-                </p>
+        </section>
+
+        <section id="experience" class="container">
+            <h2>Work Experience</h2>
+            <div class="experience-item">
+                <h3>Machine Learning Engineering Intern</h3>
+                <p>Milwaukee Turners | February 2024 - Present</p>
+                <ul>
+                    <li>Decided and interpreted best fit Machine Learning model choice for given problems for specific
+                        projects.</li>
+                    <li>Developed a web crawling transcription script from scratch that can accurately create text
+                        interpretations of audio from video meetings.</li>
+                    <li>Contributed to the open-source community by developing a Natural Language Processing crate in
+                        rust for internal use.</li>
+                    <li>Utilized Natural Language Processing to take transcripts and trim, lemmatize and further
+                        tokenize sentences into machine readable data.</li>
+                    <li>Developed a Bayesian Sentiment Analysis library for taking tokenized sentences with pre-assigned
+                        classifications and generating probability maps for tokens falling within a class, created a
+                        linear regression based on a sequence of these tokens and their respective probabilities.</li>
+                </ul>
             </div>
-
-            <!--
-            <div class="mt-10">
-                <div class="action flex justify-center underline color-lilac">
-                    <a href="./nav/projects.html" class="glow project-link"><b>Check Out My Projects - -></b></a>
-                </div>
-            </div>-->
-
-            <div class="mt-10">
-                <h2 class="text-gray-400 uppercase">Experience</h2>
+            <div class="experience-item">
+                <h3>Mobile App Developer Intern</h3>
+                <p>HIR Wellness Institute | September 2023 - December 2023</p>
+                <ul>
+                    <li>Developed React Native mobile application for internal company scheduling of interns.</li>
+                    <li>Created interface between Firebase NoSQL database and JavaScript frontend.</li>
+                    <li>Created database schema depicting hierarchy of users with varying rights and access levels.</li>
+                    <li>Implemented Google Maps and Apple Maps API to create a real time map of all nearby events posted
+                        by administrators.</li>
+                </ul>
             </div>
-            <div class="job-sec-1">
-                <div class="mt-5">
-                    <div class="lg:mx-10">
-                        <p>
-                            <a class="text-white font-bold underline" href="https://www.milwaukeeturners.org/">
-                                Milwaukee Turners</a>
-                            — <i>Milwaukee, WI</i>
-                        </p>
-                    </div>
-                    <div class="lg:mx-10 grid sm:grid-cols-5">
-                        <span class="col-span-3 gap-x-6 italic color-purple print:text-black">
-                            Machine Learning Engineering Intern
-                        </span>
-                        <span class="sm:text-right">February 2024 -</span>
-                        <span class="sm:text-right">April 2024</span>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <div class="lg:mx-10">
-                        <ul class="list-disc list-inside">
-                            <li>
-                                Developed web crawling agent <b class="color-green">crowler</b>(closed source); a video to text
-                                transcription cli app in Rust. Utilized
-                                Tokio and Reqwest to download Milwaukee Police Commission meetings and develop asynchronous and
-                                instant transcripts of
-                                hearings.
-                            </li>
-                            <li class="mt-4">
-                                Developing a Bayesian Sentiment Analysis library for taking tokenized sentences with pre-assigned
-                                classifications and
-                                generating probability maps for tokens falling within a class, created a linear regression based on
-                                a sequence of these
-                                tokens and their respective probabilities.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            
+            <div class="experience-item">
+                <h3>Full Stack .NET Developer Intern</h3>
+                <p>FitX On Demand | January 2023 - August 2023</p>
+                <ul>
+                    <li>Developed cloud-based IoT solution for remote access QR codes that can scan into fitness
+                        content.</li>
+                    <li>Implemented secure zone identifier that bans video access if scan location is out of range from
+                        the designated hotel/gym.</li>
+                    <li>Leveraged AWS S3 buckets to host video content securely with limited endpoints open.</li>
+                    <li>Developed data visualization through QR code scan location statistics on a map along with
+                        dynamic QR code disabling based on how much variety these scan locations carried.</li>
+                </ul>
             </div>
-            
-            <div class="job-sec">
-                <div class="mt-5">
-                    <div class="lg:mx-10">
-                        <p>
-                            <a class="text-white font-bold underline" href="https://www.hirwellness.org/">
-                                HIR Wellness Institute</a>
-                            — <i>Milwaukee, WI</i>
-                        </p>
-                    </div>
-                    <div class="lg:mx-10 grid sm:grid-cols-5">
-                        <span class="col-span-3 gap-x-6 italic color-purple print:text-black">
-                            Mobile App Developer Intern
-                        </span>
-                        <span class="sm:text-right">September 2023 -</span>
-                        <span class="sm:text-right">December 2023</span>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <div class="lg:mx-10">
-                        <ul class="list-disc list-inside">
-                            <li>
-                                Developed the <b class="color-green">CAM Lighthouse</b> mobile app to allow for interns of HIR Wellness to better organize in person events.
-                                Built on React Native and Firebase, the app contained user roles that would modify the permissions of different
-                                interns/employees. 
-                            </li>
-                            <li class="mt-4">
-                                Created page templating for Store, Map, Admin dashboard and Settings pages with responsive layouts and submodels,
-                                adhering to MVC architecture. Restricted visibility and permissions based on user status enum in Firebase. For <b
-                                    class="color-green">Admin</b> users, the app allowed for the creation of new <i>events</i> and <i>workshops</i>
-                                centered around recovery from mass trauma and general therapy strategies. Interns could then sign up for these events
-                                and grow their account status based on reputability/amount of events worked at.
-                            </li>
-                            <li class="mt-4">
-                                Implemented Google Maps API and Apple Maps API for cross compatible map integration. Used address-to-lon-lat APIs to
-                                derive general location of HIR Wellness events and map them to the graphical map.
-                            </li>
-                            <li class="mt-4">
-                                Recognized by <a href="">MSOE's monthly newsletter</a>MSOE's monthly newsletter for helping the community by contributing to this application
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="experience-item">
+                <h3>Full Stack .NET Contract Developer</h3>
+                <p>BrightBean Labs | November 2020 - January 2023</p>
+                <ul>
+                    <li>Developed Asp.Net web applications and Xamarin Forms mobile applications for clients seeking
+                        unique software solutions in the .Net space.</li>
+                    <li>Developed Denver Health DHREM scheduling platform: an Asp.Net built application providing
+                        continuously integrated scheduling services in real time for Denver Health resident interns.
+                    </li>
+                    <li>Used Xamarin forms and MVC architecture to develop an IoT mobile solution for smart truck engine
+                        warmers that could be dynamically controlled through the app.</li>
+                </ul>
             </div>
+        </section>
 
-            <div class="job-sec">
-                <div class="mt-5">
-                    <div class="lg:mx-10">
-                        <p>
-                            <a class="text-white font-bold underline" href="https://www.linkedin.com/company/fitx-videos/about/">
-                                FitX On Demand</a>
-                            — <i>Phoenix, AZ</i>
-                        </p>
-                    </div>
-                    <div class="lg:mx-10 grid sm:grid-cols-5">
-                        <span class="col-span-3 gap-x-6 italic color-purple print:text-black">
-                            Full Stack .NET Developer Intern
-                        </span>
-                        <span class="sm:text-right">January 2023 -</span>
-                        <span class="sm:text-right">August 2023</span>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <div class="lg:mx-10">
-                        <ul class="list-disc list-inside">
-                            <li>
-                                Lead Development on cloud based IoT solution for remote access QR codes that can scan into fitness content. FitX has
-                                previously been using kiosks booted with <b class="color-green">Windows XP</b> to host the video content on their exercise equipment, and therefore
-                                wanted to migrate to something less fallible and more future-safe.
-                            </li>
-                            <li class="mt-4">
-                                Built a QR code cloud platform on ASP.NET MVC with an <b class="color-green">AWS S3</b> bucket video hosting system. Video content was several
-                                gigabytes in size for longer videos, so a chunk-based asynchronous <b>web sockets</b> were used to continuously load content as
-                                it was being displayed to the user.
-                            </li>
-                            <li class="mt-4">
-                                Implemented secure zone identifier that bans video access if scan location is out of range from the designated
-                                hotel/gym. Allowed for a dynamic range to be set for how far from initial scan location a QR code can be accessed, and
-                                gated all content within that margin.
-                            </li>
-                            <li class="mt-4">
-                                Developed <b class="color-green">data visualization</b> through QR code scan location statistics on a map along with dynamic QR code disabling
-                                based on how much variety these scan locations carried.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        <section id="projects" class="container">
+            <h2>Projects</h2>
+            <div class="project-item">
+                <h3>Machine Learning Drones - Embedded Deep Learning</h3>
+                <ul>
+                    <li>Developing and implementing a fully autonomous drone that could respond to hand signals for
+                        motion.</li>
+                    <li>Modeled and developed the convolutional neural network computer vision and path decision systems
+                        responsible for the drone's flight pattern.</li>
+                    <li>Developed a lightweight embedded Rust library based off existing deep learning crate that can
+                        parse precompiled weight/bias models and forward propagate a convolutional neural network on the
+                        embedded level.</li>
+                    <li>Implemented a lightweight file format for hosting machine learning models on memory intensive
+                        embedded systems containing serialized model weights, biases, activation functions and layer
+                        types.</li>
+                </ul>
             </div>
-
-            <div class="job-sec">
-                <div class="mt-5">
-                    <div class="lg:mx-10">
-                        <p>
-                            <a class="text-white font-bold underline" href="https://www.brightbeanlabs.com/">
-                                BrightBean Labs</a>
-                            — <i>Denver, CO</i>
-                        </p>
-                    </div>
-                    <div class="lg:mx-10 grid sm:grid-cols-5">
-                        <span class="col-span-3 gap-x-6 italic color-purple print:text-black">
-                            Full stack .NET Contract Developer
-                        </span>
-                        <span class="sm:text-right">November 2020 -</span>
-                        <span class="sm:text-right">January 2023</span>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <div class="lg:mx-10">
-                        <ul class="list-disc list-inside">
-                            <li>
-                                Developed Asp.Net web applications and Xamarin Forms mobile applications for clients seeking unique software solutions
-                                in the .Net space. Worked alongside BrightBean CTO Milan Thompson through weekly virtual meetings and deadlines for when
-                                client software was expected.
-                            </li>
-                            <li class="mt-4">
-                                Developed <b class="color-green">Denver Health DHREM scheduling platform</b>: an Asp.Net built application providing continuously integrated
-                                scheduling services in real time for Denver Health resident interns. Application required the leveraging of large
-                                quantities of resident data and therefore utilized <b class="color-green">SignalR</b> websockets to dynamically load a Master Schedule page.
-                            </li>
-                            <li class="mt-4">
-                                Developed XLS parsing algorithm for aggregating and parsing resident schedules from the legacy system(Excel). Allowed
-                                for seamless integration from Denver Health's previous method to this new system
-                            </li>
-                            <li class="mt-4">
-                                Used <b class="color-green">Xamarin</b> forms and MVC architecture to develop an IoT mobile solution for smart truck engine warmers that could be
-                                dynamically controlled through the app. Utilized noSQL database hosted locally on user's phone to track application
-                                state and timings for engine starts.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="project-item">
+                <h3>Open-Source Machine Learning Library in Rust from Scratch</h3>
+                <ul>
+                    <li>Developed a library in Rust for easy and simple neural network development in the rust
+                        ecosystem. Triton aims to be the equivalent of Python libraries such as Keras for the Rust
+                        programming language, using Traits and zero cost abstractions.</li>
+                    <li>Using knowledge on Rust's rich Enum type and Traits system, created a plug and play style neural
+                        network that can morph abstract data to fit the layers as it travels down the network.</li>
+                    <li>Implemented Dense and Convolutional layers, Minibatch Gradient Descent, dynamic data
+                        manipulation and data visualization helper methods all completely from scratch.</li>
+                    <li>Contributed to the open-source community and posted code as a unit tested and constantly
+                        maintained library with over 2,500 downloads.</li>
+                </ul>
+                <a href="https://github.com/BradenEverson/Triton" target="_blank">View Project</a>
             </div>
-
-            <div class="mt-10">
-                <h2 class="text-gray-400 uppercase">Education</h2>
+            <div class="project-item">
+                <h3>Large Language Model Fine Tuning in Rust</h3>
+                <ul>
+                    <li>Fine tuned a downloaded copy of the GPT-2 model using input sample data generated from romcoms
+                        and dating show scripts to create a model specifically aimed at generating reality TV.</li>
+                    <li>Developed wrapper interface in Rust that would generate ‘contestants' for dating show,
+                        procedurally generated personality traits based on a noise map generated over a list of
+                        attributes.</li>
+                    <li>Utilized Fine Tuned GPT Model to generate the scripts with respect to contestant names and
+                        personalities, along with the type of event the script would be acting out.</li>
+                    <li>Created frontend through the Unity Platform, procedurally generated contestant models with a
+                        2.5D effect while contestants acted out the AI generated scripts.</li>
+                </ul>
             </div>
-            <div class="mt-5">
-                <div class="lg:mx-10">
-                    <p>
-                        <a class="font-bold underline" href="https://www.msoe.edu/">Milwaukee School of
-                            Engineering(MSOE)</a>
-                        — <i>Milwaukee, WI</i>
-                    </p>
-                </div>
-                <div class="lg:mx-10 grid sm:grid-cols-5">
-                    <div class="col-span-3 color-blue">
-                        M. S. Machine Learning
-                    </div>
-                    <span class="sm:text-right">September 2023 -</span>
-                    <span class="sm:text-right">December 2027 </span>
-
-                    <div class="col-span-3 color-blue">
-                        B. S. Computer Science (3.89 GPA)
-                    </div>
-                    <span class="sm:text-right">September 2023 -</span>
-                    <span class="sm:text-right">June 2027 </span>
-                </div>
+            <div class="project-item">
+                <h3>MSOE Honors Community Project - Generative AI for Demolished Buildings</h3>
+                <ul>
+                    <li>Developing a generative adversarial network that can generate predicted 3D renders of buildings
+                        from the Milwaukee Bronzeville area that have been demolished based on rough blueprints
+                        generated by historical fire maps.</li>
+                    <li>Created a parallelized web scraping Rust script that downloads 1200 3mb Milwaukee area fire map
+                        files from the UWM archive.</li>
+                    <li>Generated training data based off fire maps through segmentation algorithm that uses image
+                        processing to generate geometries of every building displayed in fire map using a convolutional
+                        neural network.</li>
+                    <li>Teaching model based on fire maps as training inputs and human generated 3D models of 10
+                        buildings.</li>
+                </ul>
             </div>
-
-            <div class="mt-10">
-                <h2 class="text-gray-400 uppercase">Skills</h2>
+            <div class="project-item">
+                <h3>Senior Capstone - Smart IoT Gardening Systems</h3>
+                <ul>
+                    <li>Developing and implementing a smart gardening system that can autonomously water and maintain
+                        garden based on plant needs.</li>
+                    <li>Leveraging IoT sensors to monitor soil moisture, temperature, and light levels to adjust
+                        watering schedules and alert users of any issues.</li>
+                    <li>Integrating with a mobile app to provide users with real-time data and control over their
+                        gardening system.</li>
+                    <li>Utilizing machine learning algorithms to predict optimal watering times and amounts based on
+                        historical data and weather forecasts.</li>
+                </ul>
             </div>
+        </section>
+        <footer>
+            <p>&copy; 2024 Braden Everson :)</p>
+        </footer>
+    </div>
+</body>
 
-            <div class="grid sm:grid-cols-5 mt-5 lg:mx-10">
-                <div class="italic">Deep Learning</div>
-                <div class="col-span-4 lg:text-base lg:text-right">
-                    Rust / Python / PyTorch / TensorFlow / CUDA / Cloud Computing / R
-                </div>
-
-                <div class="italic">Embedded Systems</div>
-                <div class="col-span-4 lg:text-base lg:text-right">
-                    Rust / C / C++
-                </div>
-
-                <div class="italic">Backend</div>
-                <div class="col-span-4 lg:text-base lg:text-right">
-                    Asp.Net / React / NodeJS / GO
-                </div>
-
-                <div class="italic">Cloud</div>
-                <div class="col-span-4 lg:text-base lg:text-right">
-                    Azure / GCP / AWS / Docker
-                </div>
-            </div>
-        </main>
-    </body>
 </html>
