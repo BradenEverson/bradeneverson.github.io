@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+    <link rel="stylesheet" href="./style/styles.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <header class="flex justify-center">
+                <img src="./files/me.png" class="profile" />
+            </header>
+            <h1>Braden Everson 🦀</h1>
+            <nav>
+                <ul>
+                    <li><a href="mailto:bradeneverson@gmail.com"><span class="underline">Email</span></a></li>
+
+                    <li>
+                        <a href="https://linkedin.com/in/braden-everson">
+                            <span class="underline">LinkedIn</span>
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="https://github.com/BradenEverson">
+                            <span class="underline">GitHub</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://crates.io/users/BradenEverson">
+                            <span class="underline">Crates.io</span>
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="./files/Braden Everson.pdf" download>
+                            <span class="underline">Resume</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="summary">
+            <h2>Summary</h2>
+            <div class="summary">
+                <h3>B.S. Computer Science student at MSOE with internship experience working as a full stack software
+                    engineer as well as numerous diverse hands-on team-based project experiences. Devoting 10 hours per
+                    week to personal projects in addition to 40 hours per week working part time as a firmware software
+                    engineering intern as Cognex Corporation while maintaining a full academic schedule during the
+                    school year. Skills in Rust, C, C++, Zig, Go, Python, Data Science, Robotics and Machine Learning
+                </h3>
+            </div>
+        </section>
+
+        <section id="experience" class="container">
+            <h2>Work Experience</h2>
+            {work}
+        </section>
+
+        <section id="projects" class="container">
+            <h2>Projects</h2>
+            {projects}
+        </section>
+        <footer>
+            <p>&copy; 2024 Braden Everson :)</p>
+        </footer>
+    </div>
+</body>
+
+</html>
