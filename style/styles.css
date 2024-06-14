@@ -3,7 +3,8 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #161821; /* Iceberg background color */
+    background-color: #161821;
+    /* Iceberg background color */
     color: #c6c6c9;
 }
 
@@ -13,15 +14,25 @@ body {
     overflow: hidden;
 }
 
-header {
-    background: #0f111a; /* Iceberg dark background */
-    color: #c6c8d1; /* Iceberg light text */
-    text-align: center;
-    border-bottom: #6b7089 3px solid; /* Iceberg border */
+.featured {
+    color: #737996;
+    font-weight: light;
 }
 
-header a, header h1 {
-    color: #c6c8d1; /* Iceberg light text */
+header {
+    background: #0f111a;
+    /* Iceberg dark background */
+    color: #c6c8d1;
+    /* Iceberg light text */
+    text-align: center;
+    border-bottom: #6b7089 3px solid;
+    /* Iceberg border */
+}
+
+header a,
+header h1 {
+    color: #c6c8d1;
+    /* Iceberg light text */
 }
 
 header ul {
@@ -58,48 +69,60 @@ header nav {
 }
 
 header a:hover {
-    color: #84a0c6; /* Iceberg hover color */
+    color: #84a0c6;
+    /* Iceberg hover color */
 }
 
 section {
     padding: 20px 0;
-    border-bottom: #6b7089 1px solid; /* Iceberg border */
+    border-bottom: #6b7089 1px solid;
+    /* Iceberg border */
 }
 
 h2 {
-    color: #c6c8d1; /* Iceberg light text */
+    color: #c6c8d1;
+    /* Iceberg light text */
     margin-bottom: 20px;
 }
 
-.experience-item, .project-item {
-    background: #1e2132; /* Iceberg content background */
+.experience-item,
+.project-item {
+    background: #1e2132;
+    /* Iceberg content background */
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.experience-item h3, .project-item h3 {
+.experience-item h3,
+.project-item h3 {
     margin-top: 0;
-    color: #84a0c6; /* Iceberg highlight text */
+    color: #84a0c6;
+    /* Iceberg highlight text */
 }
 
-.experience-item p, .project-item p {
-    color: #a7adba; /* Iceberg muted text */
+.experience-item p,
+.project-item p {
+    color: #a7adba;
+    /* Iceberg muted text */
     margin: 5px 0;
 }
 
-.experience-item ul, .project-item ul {
+.experience-item ul,
+.project-item ul {
     list-style-type: disc;
     margin: 10px 0 0 20px;
     padding: 0;
 }
 
-.experience-item ul li, .project-item ul li {
+.experience-item ul li,
+.project-item ul li {
     margin-bottom: 5px;
 }
 
 a {
-    color: #84a0c6; /* Iceberg link color */
+    color: #84a0c6;
+    /* Iceberg link color */
     text-decoration: none;
 }
 

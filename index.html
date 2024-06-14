@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Website</title>
+    <title>Braden Everson :)</title>
     <link rel="stylesheet" href="./style/styles.css">
-    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 
 <body>
@@ -63,7 +62,7 @@
 
         <section id="experience" class="container">
             <h2>Work Experience</h2>
-            <div class="experience-item">
+            <div class='experience-item'>
                 <h3>Software Development Intern</h3>
                 <p>Cognex Corporation | May 2024 - Current</p>
                 <ul>
@@ -74,10 +73,10 @@
                     <li>Participated in 3 week sprints of development goals, achieved my goals consistently within this
                         time.</li>
                     <li>Rewriting memory unsafe areas of the firmware utilizing Rust bound alongside cxx for a safer
-                        device and better user experience</li>
+                        device and better user experience.</li>
                 </ul>
             </div>
-            <div class="experience-item">
+            <div class='experience-item'>
                 <h3>Mobile App Developer Intern</h3>
                 <p>HIR Wellness Institute | September 2023 - December 2023</p>
                 <ul>
@@ -88,7 +87,7 @@
                         by administrators.</li>
                 </ul>
             </div>
-            <div class="experience-item">
+            <div class='experience-item'>
                 <h3>Full Stack .NET Developer Intern</h3>
                 <p>FitX On Demand | January 2023 - August 2023</p>
                 <ul>
@@ -101,7 +100,7 @@
                         dynamic QR code disabling based on how much variety these scan locations carried.</li>
                 </ul>
             </div>
-            <div class="experience-item">
+            <div class='experience-item'>
                 <h3>Full Stack .NET Contract Developer</h3>
                 <p>BrightBean Labs | November 2020 - January 2023</p>
                 <ul>
@@ -118,51 +117,74 @@
 
         <section id="projects" class="container">
             <h2>Projects</h2>
-            <div class="project-item">
+            <div class='project-item'>
+                <h3>📍<i class="featured">pinned project</i> <br /> Unda - Open-Source Machine Learning Library in Rust
+                    from Scratch 🌊</h3>
+                <ul>
+                    <li>Developing a machine learning library <i>Unda</i> for accelerated machine learning tasks.</li>
+                    <li>Created intermediate backing API for constructing neural networks as sequences of computation
+                        nodes in a custom built compute graph.</li>
+                    <li>Utilized XLA bindings written in Rust to dynamically compile compute graph into an accelerated
+                        context.</li>
+                    <li>Created a high level API for creating supervised machine learning models.</li>
+                    <li>Working on future implementations of unsupervised and generative model architectures.</li>
+                </ul><b>Unda was a part of the 2024 MSOE ROSIE Supercomputer challenge and ranked 4th place
+                    overall!!</b><br /><a href="https://github.com/unda-ml/unda" target="_blank">Star Unda on GitHub</a>
+            </div>
+            <div class='project-item'>
                 <h3>Embedded Machine Learning - Predictive Heart Attack Monitor 💓</h3>
                 <ul>
                     <li>Using the <a href="https://github.com/unda-ml/unda">unda library</a>, trained a dense neural
                         network off of the <a
                             href="https://www.kaggle.com/datasets/rashikrahmanpritom/heart-attack-analysis-prediction-dataset">heart
-                            attack analysis prediction dataset</a> from Kaggle</li>
+                            attack analysis prediction dataset</a> from Kaggle.</li>
                     <li>Trained model on 4 features and totaled ~512 total parameters. Using Unda the model was trained
-                        to an accuracy of 96.08%</li>
+                        to an accuracy of 96.08%.</li>
                     <li>Exported model trained off supercomputer as a custom .unda file that could be interpretted by an
-                        embedded Unda runtime</li>
+                        embedded Unda runtime.</li>
                     <li>Created an embedded esp32 based circuit that integrated peripherals including heart sensor for
-                        reading bpm and LEDs for signifying model state and prediction status</li>
+                        reading bpm and LEDs for signifying model state and prediction status.</li>
                     <li>Developed firmware in Rust that not only performed inferences from the ML model, but also
                         responded accordingly and repeatedly blinked the LEDs within a 3D printed case to alert the
                         user.</li>
-                    <br />
-
-                </ul>
-
-                <b>This project was a part of the showcase at the 2024 MSOE ROSIE Supercomputer challenge and
-                    ranked 4th place overall!!</b>
-                <br />
-                <a href="https://github.com/BradenEverson/unda-heart-embedded">Embedded Source Code</a>
-                <br />
-                <a href="https://github.com/BradenEverson/unda-heart-attack-dnn">Model Source Code</a>
+                </ul><b>This project was a part of the showcase at the 2024 MSOE ROSIE Supercomputer challenge and
+                    ranked 4th place overall!!</b><br /><a
+                    href="https://github.com/BradenEverson/unda-heart-embedded">Embedded Source Code</a><br /><a
+                    href="https://github.com/BradenEverson/unda-heart-attack-dnn">Model Source Code</a>
             </div>
-            <div class="project-item">
-                <h3>Unda - Open-Source Machine Learning Library in Rust from Scratch ⚙️🦀 </h3>
+            <div class='project-item'>
+                <h3>Embedded Machine Learning - Automated Plant Care ☀️💧</h3>
                 <ul>
-                    <li>Developing a machine learning library <i>Unda</i> for accelerated machine learning tasks</li>
-                    <li>Created intermediate backing API for constructing neural networks as sequences of computation
-                        nodes in a custom built compute graph</li>
-                    <li>Utilized XLA bindings written in Rust to dynamically compile compute graph into an accelerated
-                        context</li>
-                    <li>Created a high level API for creating supervised machine learning models.</li>
-                    <li>Working on future implementations of unsupervised and generative model architectures</li>
-                    <br />
-                </ul>
-                <b>Unda was a part of the 2024 MSOE ROSIE Supercomputer challenge and ranked 4th place
-                    overall!!</b>
-                <br />
-                <a href="https://github.com/unda-ml/unda" target="_blank">Star Unda on GitHub</a>
+                    <li>Using the <a href="https://github.com/unda-ml/unda">unda library</a>, developed a model trained
+                        on sun exposure, soil moisture, and time since last water to predict when a plant should be
+                        watered.</li>
+                    <li>Developed and integrated esp32 embedded system that had control of a water pump, moisture
+                        sensor, light sensor, and servo motor for moving a giant shade over the plant.</li>
+                    <li>Trained mode on 3 features with over 350,0000 parameters on a supercomputer using the Unda
+                        library and exported as a custom .unda file for embedded use.</li>
+                    <li>Integrated sensors and actuators with the esp32 to automatically water the plant and adjust
+                        shading based on model predictions.</li>
+                    <li>Developed firmware in Rust to handle sensor readings, model inference, and actuator control.
+                    </li>
+                </ul><b>This project was a part of the showcase at the 2024 MSOE ROSIE Supercomputer challenge and
+                    ranked 4th place overall!!</b><br /><a
+                    href="https://github.com/BradenEverson/unda-garden-embedded">Embedded Source Code</a><br /><a
+                    href="https://github.com/BradenEverson/eden-model">Model Source Code</a>
             </div>
-            <div class="project-item">
+            <div class='project-item'>
+                <h3>SiteSmith - Rust CLI Tool for Generating Personal Websites 🛠️</h3>
+                <ul>
+                    <li>Developed SiteSmith, a Rust CLI tool designed to generate a personal website by reading project
+                        and work experience data from JSON files and using a template to create an HTML website.</li>
+                    <li>Implemented features to parse JSON data for projects and work experience, utilize an HTML
+                        template to format and generate the website, and customize templates for projects and work
+                        entries.</li>
+                    <li>Utilized the Open Source Rust community to publish CLI Tool on Cargo, making the application
+                        publically available and usable.</li>
+                </ul><b>This website was generated using SiteSmith!</b><br /><a
+                    href="https://github.com/BradenEverson/sitesmith">Source Code</a>
+            </div>
+            <div class='project-item'>
                 <h3>Machine Learning Drones - Embedded Deep Learning 🦾</h3>
                 <ul>
                     <li>Developing and implementing a fully autonomous drone that could respond to hand signals for
@@ -177,8 +199,7 @@
                         types.</li>
                 </ul>
             </div>
-
-            <div class="project-item">
+            <div class='project-item'>
                 <h3>Large Language Model Fine Tuning in Rust 💁</h3>
                 <ul>
                     <li>Fine tuned a downloaded copy of the GPT-2 model using input sample data generated from romcoms
@@ -192,7 +213,7 @@
                         2.5D effect while contestants acted out the AI generated scripts.</li>
                 </ul>
             </div>
-            <div class="project-item">
+            <div class='project-item'>
                 <h3>MSOE Honors Community Project - Generative AI for Demolished Buildings 🏛️</h3>
                 <ul>
                     <li>Developing a generative adversarial network that can generate predicted 3D renders of buildings
@@ -207,7 +228,7 @@
                         buildings.</li>
                 </ul>
             </div>
-            <div class="project-item">
+            <div class='project-item'>
                 <h3>Senior Capstone - Smart IoT Gardening Systems 🪴</h3>
                 <ul>
                     <li>Developing and implementing a smart gardening system that can autonomously water and maintain
