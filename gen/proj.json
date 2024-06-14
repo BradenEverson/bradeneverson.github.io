@@ -1,6 +1,6 @@
 [
     {
-        "name": "📍<i class=\"featured\">pinned project</i> <br/> Unda - Open-Source Machine Learning Library in Rust from Scratch ⚙️🦀",
+        "name": "📍<i class=\"featured\">pinned project</i> <br/> Unda - Open-Source Machine Learning Library in Rust from Scratch 🌊",
         "descr": [
             "Developing a machine learning library <i>Unda</i> for accelerated machine learning tasks.",
             "Created intermediate backing API for constructing neural networks as sequences of computation nodes in a custom built compute graph.",
@@ -26,6 +26,21 @@
             "<b>This project was a part of the showcase at the 2024 MSOE ROSIE Supercomputer challenge and ranked 4th place overall!!</b>",
             "<a href=\"https://github.com/BradenEverson/unda-heart-embedded\">Embedded Source Code</a>",
             "<a href=\"https://github.com/BradenEverson/unda-heart-attack-dnn\">Model Source Code</a>"
+        ]
+    },
+    {
+        "name": "Embedded Machine Learning - Automated Plant Care ☀️💧",
+        "descr": [
+            "Using the <a href=\"https://github.com/unda-ml/unda\">unda library</a>, developed a model trained on sun exposure, soil moisture, and time since last water to predict when a plant should be watered.",
+            "Developed and integrated esp32 embedded system that had control of a water pump, moisture sensor, light sensor, and servo motor for moving a giant shade over the plant.",
+            "Trained mode on 3 features with over 350,0000 parameters on a supercomputer using the Unda library and exported as a custom .unda file for embedded use.",
+            "Integrated sensors and actuators with the esp32 to automatically water the plant and adjust shading based on model predictions.",
+            "Developed firmware in Rust to handle sensor readings, model inference, and actuator control."
+        ],
+        "extra": [
+            "<b>This project was a part of the showcase at the 2024 MSOE ROSIE Supercomputer challenge and ranked 4th place overall!!</b>",
+            "<a href=\"https://github.com/BradenEverson/unda-garden-embedded\">Embedded Source Code</a>",
+            "<a href=\"https://github.com/BradenEverson/eden-model\">Model Source Code</a>"
         ]
     },
     {
