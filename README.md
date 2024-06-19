@@ -1,4 +1,4 @@
-# bradeneverson.github.io 🦾🤯
+# It's my website!!!
 My personal site to show off projects and work experience
 
 It'll be a plus if it looks pretty too
