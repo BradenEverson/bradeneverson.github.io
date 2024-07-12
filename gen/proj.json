@@ -44,6 +44,19 @@
         ]
     },
     {
+        "name": "GeneZip - Genomics Compression CLI Tool 🧬",
+        "descr": [
+            "Developing GeneZip, a Rust command-line tool for compressing genetic information files.",
+            "Implemented Huffman encoding to efficiently compress genetic data.",
+            "Created a command-line interface for easy compression and decompression of files.",
+            "Handling serialization of encoding keys for decompressing genome files.",
+            "Working on implementing run-length-tokenized encoding for improved compression efficiency."
+        ],
+        "extra": [
+            "<a href=\"https://github.com/BradenEverson/genezip\" target=\"_blank\">GitHub Repo</a>"
+        ]
+    },
+    {
         "name": "SiteSmith - Rust CLI Tool for Generating Personal Websites 🛠️",
         "descr": [
             "Developed SiteSmith, a Rust CLI tool designed to generate a personal website by reading project and work experience data from JSON files and using a template to create an HTML website.",
