@@ -1,15 +1,16 @@
 [
     {
-        "name": "Software Development Intern",
+        "name": "Embedded Software Engineering Intern",
         "location": "Cognex Corporation",
         "timespan": "May 2024 - Current",
         "descr": [
-            "Developed internal camera firmware in C and C++.",
-            "Investigated and documented the integrability of Rust alongside the CMake codebase.",
-            "Drove reports to marketing teams about findings and progress in Rust integration.",
-            "Attended daily meetings with SCRUM team to address progress and blockings.",
-            "Participated in 3 week sprints of development goals, achieved my goals consistently within this time.",
-            "Rewriting memory unsafe areas of the firmware utilizing Rust bound alongside cxx for a safer device and better user experience."
+            "Researched and integrating Rust into a large CMake-based C++/C codebase, replacing an in-house HTTP server implementation responsible for multiple user-facing crashes due to memory related issues.",
+            "Utilized the Corrosion crate and cxx for seamless C++ and Rust interoperability, ensuring smooth integration into the existing codebase.",
+            "Leveraging Rust's memory safety to architect a robust and crash-resistant HTTP server, improving system stability while maintaining performace deltas.",
+            "Implemented WebSocket upgrade protocols in Rust, enabling more modern features within the server.",
+            "Utilized asynchronous Rust for thread-safe, optimized server management, ensuring efficient handling of multiple connections.",
+            "Developed and executed unit and integration tests in both Rust and C++ to validate compatibility with existing FFI consumers.",
+            "Reported daily findings and progress to scrum team of engineers."
         ],
         "extra": []
     },

@@ -2,11 +2,11 @@
     {
         "name": "📍<i class=\"featured\">pinned project</i> <br/> Unda - Open-Source Machine Learning Library in Rust from Scratch 🌊",
         "descr": [
-            "Developing a machine learning library <i>Unda</i> for accelerated machine learning tasks.",
-            "Created intermediate backing API for constructing neural networks as sequences of computation nodes in a custom built compute graph.",
-            "Utilized XLA bindings written in Rust to dynamically compile compute graph into an accelerated context.",
-            "Created a high level API for creating supervised machine learning models.",
-            "Working on future implementations of unsupervised and generative model architectures."
+            "Led the development of the <i>Unda</i> machine learning library in Rust, designed for efficient execution of machine learning workloads.",
+            "Engineered an intermediate API for constructing neural networks using a sequence of computation nodes within a custom compute graph.",
+            "Integrated XLA bindings in Rust to dynamically compile and optimize compute graphs for accelerated execution.",
+            "Developed a high-level API to facilitate the creation of supervised machine learning models, with ongoing work on unsupervised and generative models.",
+            "Unda achieved 4th place in the 2024 MSOE ROSIE Supercomputer Challenge, demonstrating its effectiveness in large-scale ML tasks."
         ],
         "extra": [
             "<b>Unda was a part of the 2024 MSOE ROSIE Supercomputer challenge and ranked 4th place overall!!</b>",
@@ -14,16 +14,40 @@
         ]
     },
     {
-        "name": "Embedded Machine Learning - Predictive Heart Attack Monitor 💓",
+        "name": "td - Tower Defense Game in Rust 🏗️",
         "descr": [
-            "Using the <a href=\"https://github.com/unda-ml/unda\">unda library</a>, trained a dense neural network off of the <a href=\"https://www.kaggle.com/datasets/rashikrahmanpritom/heart-attack-analysis-prediction-dataset\">heart attack analysis prediction dataset</a> from Kaggle.",
-            "Trained model on 4 features and totaled ~512 total parameters. Using Unda the model was trained to an accuracy of 96.08%.",
-            "Exported model trained off supercomputer as a custom .unda file that could be interpretted by an embedded Unda runtime.",
-            "Created an embedded esp32 based circuit that integrated peripherals including heart sensor for reading bpm and LEDs for signifying model state and prediction status.",
-            "Developed firmware in Rust that not only performed inferences from the ML model, but also responded accordingly and repeatedly blinked the LEDs within a 3D printed case to alert the user."
+            "Developed a real-time, WebSocket-enabled tower defense game with a focus on multiplayer interactions.",
+            "Implemented a WebSocket server in Rust to handle real-time game state synchronization across multiple clients.",
+            "Designed an asynchronous server flow optimized for performance and low latency in a multiplayer environment.",
+            "Utilized TypeScript for the frontend to manage game state, render animations, and handle user inputs on an HTML5 canvas."
         ],
         "extra": [
-            "<b>This project was a part of the showcase at the 2024 MSOE ROSIE Supercomputer challenge and ranked 4th place overall!!</b>",
+            "<a href=\"https://github.com/BradenEverson/td\">GitHub Repo</a>"
+        ]
+    },
+    {
+        "name": "wunos - Rust-Based Uno Game Server 🃏",
+        "descr": [
+            "Developed a WebSocket-based server for playing Uno, written in Rust to ensure high performance and low latency.",
+            "Implemented the game logic, including rules enforcement and turn management, in a scalable, event-driven architecture.",
+            "Created a robust system for managing player connections, game state, and real-time interactions.",
+            "Integrated with a custom WebSocket client to provide a seamless multiplayer Uno experience.",
+            "Developed an intuitive and charming TUI for playing Uno directly from the terminal."
+        ],
+        "extra": [
+            "<a href=\"https://github.com/BradenEverson/wunos\">GitHub Repo</a>"
+        ]
+    },
+    {
+        "name": "Embedded Machine Learning - Predictive Heart Attack Monitor 💓",
+        "descr": [
+            "Utilized the <a href=\"https://github.com/unda-ml/unda\">Unda library</a> to train a dense neural network on the <a href=\"https://www.kaggle.com/datasets/rashikrahmanpritom/heart-attack-analysis-prediction-dataset\">Heart Attack Analysis Prediction Dataset</a> from Kaggle.",
+            "Achieved a 96.08% accuracy rate using a model with approximately 512 parameters.",
+            "Exported the trained model as a custom .unda file for embedded use, enabling real-time inference on an ESP32-based circuit.",
+            "Developed firmware in Rust for the ESP32, integrating peripherals such as a heart rate sensor and LEDs to signal model predictions, housed within a custom 3D-printed case."
+        ],
+        "extra": [
+            "<b>This project was showcased at the 2024 MSOE ROSIE Supercomputer challenge and ranked 4th place overall!!</b>",
             "<a href=\"https://github.com/BradenEverson/unda-heart-embedded\">Embedded Source Code</a>",
             "<a href=\"https://github.com/BradenEverson/unda-heart-attack-dnn\">Model Source Code</a>"
         ]
@@ -31,37 +55,23 @@
     {
         "name": "Embedded Machine Learning - Automated Plant Care ☀️💧",
         "descr": [
-            "Using the <a href=\"https://github.com/unda-ml/unda\">unda library</a>, developed a model trained on sun exposure, soil moisture, and time since last water to predict when a plant should be watered.",
-            "Developed and integrated esp32 embedded system that had control of a water pump, moisture sensor, light sensor, and servo motor for moving a giant shade over the plant.",
-            "Trained mode on 3 features with over 350,0000 parameters on a supercomputer using the Unda library and exported as a custom .unda file for embedded use.",
-            "Integrated sensors and actuators with the esp32 to automatically water the plant and adjust shading based on model predictions.",
-            "Developed firmware in Rust to handle sensor readings, model inference, and actuator control."
+            "Leveraged the <a href=\"https://github.com/unda-ml/unda\">Unda library</a> to develop a predictive model trained on sun exposure, soil moisture, and time since last watering to automate plant care.",
+            "Designed and integrated an ESP32-based embedded system that controls a water pump, moisture sensor, light sensor, and servo motor for plant care automation.",
+            "Trained a model with over 350,000 parameters, optimized using a supercomputer and exported as a custom .unda file for embedded deployment.",
+            "Implemented firmware in Rust for the ESP32, enabling the system to autonomously manage watering and shading based on model predictions."
         ],
         "extra": [
-            "<b>This project was a part of the showcase at the 2024 MSOE ROSIE Supercomputer challenge and ranked 4th place overall!!</b>",
+            "<b>This project was showcased at the 2024 MSOE ROSIE Supercomputer challenge and ranked 4th place overall!!</b>",
             "<a href=\"https://github.com/BradenEverson/unda-garden-embedded\">Embedded Source Code</a>",
             "<a href=\"https://github.com/BradenEverson/eden-model\">Model Source Code</a>"
         ]
     },
     {
-        "name": "GeneZip - Genomics Compression CLI Tool 🧬",
-        "descr": [
-            "Developing GeneZip, a Rust command-line tool for compressing genetic information files.",
-            "Implemented Huffman encoding to efficiently compress genetic data.",
-            "Created a command-line interface for easy compression and decompression of files.",
-            "Handling serialization of encoding keys for decompressing genome files.",
-            "Working on implementing run-length-tokenized encoding for improved compression efficiency."
-        ],
-        "extra": [
-            "<a href=\"https://github.com/BradenEverson/genezip\" target=\"_blank\">GitHub Repo</a>"
-        ]
-    },
-    {
         "name": "SiteSmith - Rust CLI Tool for Generating Personal Websites 🛠️",
         "descr": [
-            "Developed SiteSmith, a Rust CLI tool designed to generate a personal website by reading project and work experience data from JSON files and using a template to create an HTML website.",
-            "Implemented features to parse JSON data for projects and work experience, utilize an HTML template to format and generate the website, and customize templates for projects and work entries.",
-            "Utilized the Open Source Rust community to publish CLI Tool on Cargo, making the application publically available and usable."
+            "Developed SiteSmith, a Rust-based CLI tool that automates the generation of personal websites using JSON-formatted project and work experience data.",
+            "Implemented features for parsing JSON data and generating HTML websites from customizable templates.",
+            "Published the tool on Cargo, making it publicly available for developers seeking to automate the creation of personal websites."
         ],
         "extra": [
             "<b>This website was generated using SiteSmith!</b>",
@@ -71,40 +81,20 @@
     {
         "name": "Machine Learning Drones - Embedded Deep Learning 🦾",
         "descr": [
-            "Developing and implementing a fully autonomous drone that could respond to hand signals for motion.",
-            "Modeled and developed the convolutional neural network computer vision and path decision systems responsible for the drone's flight pattern.",
-            "Developed a lightweight embedded Rust library based off existing deep learning crate that can parse precompiled weight/bias models and forward propagate a convolutional neural network on the embedded level.",
-            "Implemented a lightweight file format for hosting machine learning models on memory intensive embedded systems containing serialized model weights, biases, activation functions and layer types."
-        ],
-        "extra": []
-    },
-    {
-        "name": "Large Language Model Fine Tuning in Rust 💁",
-        "descr": [
-            "Fine tuned a downloaded copy of the GPT-2 model using input sample data generated from romcoms and dating show scripts to create a model specifically aimed at generating reality TV.",
-            "Developed wrapper interface in Rust that would generate 'contestants' for dating show, procedurally generated personality traits based on a noise map generated over a list of attributes.",
-            "Utilized Fine Tuned GPT Model to generate the scripts with respect to contestant names and personalities, along with the type of event the script would be acting out.",
-            "Created frontend through the Unity Platform, procedurally generated contestant models with a 2.5D effect while contestants acted out the AI generated scripts."
-        ],
-        "extra": []
-    },
-    {
-        "name": "MSOE Honors Community Project - Generative AI for Demolished Buildings 🏛️",
-        "descr": [
-            "Developing a generative adversarial network that can generate predicted 3D renders of buildings from the Milwaukee Bronzeville area that have been demolished based on rough blueprints generated by historical fire maps.",
-            "Created a parallelized web scraping Rust script that downloads 1200 3mb Milwaukee area fire map files from the UWM archive.",
-            "Generated training data based off fire maps through segmentation algorithm that uses image processing to generate geometries of every building displayed in fire map using a convolutional neural network.",
-            "Teaching model based on fire maps as training inputs and human generated 3D models of 10 buildings."
+            "Developing and implementing an autonomous drone capable of responding to hand signals using embedded deep learning algorithms.",
+            "Designed and trained a convolutional neural network for computer vision and path decision-making, enabling dynamic flight pattern adjustments.",
+            "Created a lightweight embedded Rust library to parse precompiled model weights and biases, enabling on-device inference with minimal resource consumption.",
+            "Developed a custom file format for compact storage of machine learning models, optimized for memory-constrained embedded systems."
         ],
         "extra": []
     },
     {
         "name": "Senior Capstone - Smart IoT Gardening Systems 🪴",
         "descr": [
-            "Developing and implementing a smart gardening system that can autonomously water and maintain garden based on plant needs.",
-            "Leveraging IoT sensors to monitor soil moisture, temperature, and light levels to adjust watering schedules and alert users of any issues.",
-            "Integrating with a mobile app to provide users with real-time data and control over their gardening system.",
-            "Utilizing machine learning algorithms to predict optimal watering times and amounts based on historical data and weather forecasts."
+            "Developed a smart gardening system that autonomously monitors and maintains plant health through IoT-enabled sensors and actuators.",
+            "Integrated soil moisture, temperature, and light sensors to dynamically adjust watering schedules and alert users to potential issues.",
+            "Connected the system to a mobile app, providing real-time data and remote control over the gardening environment.",
+            "Leveraged machine learning algorithms to predict optimal watering times and amounts, enhancing garden management efficiency."
         ],
         "extra": []
     }
