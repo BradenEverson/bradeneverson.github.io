@@ -1,80 +1,486 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Braden Everson :)</title>
+        <link rel="stylesheet" href="./style/styles.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Braden Everson :)</title>
-    <link rel="stylesheet" href="./style/styles.css">
-</head>
+    <body>
+        <div class="container">
+            <header>
+                <header class="flex justify-center">
+                    <img src="./files/me.png" class="profile" />
+                </header>
+                <h1>Braden Everson 🦀</h1>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="mailto:bradeneverson@gmail.com"
+                                ><span class="underline">Email</span></a
+                            >
+                        </li>
 
-<body>
-    <div class="container">
-        <header>
-            <header class="flex justify-center">
-                <img src="./files/me.png" class="profile" />
+                        <li>
+                            <a href="https://linkedin.com/in/braden-everson">
+                                <span class="underline">LinkedIn</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://github.com/BradenEverson">
+                                <span class="underline">GitHub</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="./blog/index.html">
+                                <span class="underline">Blog</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="./files/Braden Everson.pdf" download>
+                                <span class="underline">Resume</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </header>
-            <h1>Braden Everson 🦀</h1>
-            <nav>
-                <ul>
-                    <li><a href="mailto:bradeneverson@gmail.com"><span class="underline">Email</span></a></li>
 
-                    <li>
-                        <a href="https://linkedin.com/in/braden-everson">
-                            <span class="underline">LinkedIn</span>
-                        </a>
-                    </li>
+            <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary">
+                    <h3>
+                        Dedicated Software Engineering Intern at Cognex
+                        Corporation with hands-on experience in full stack
+                        development and embedded systems. Strong background in
+                        Rust, C, C++, with a focus on embedded systems that make
+                        a difference for the world. Passionate about roles
+                        involving embedded systems, firmware development, and
+                        leveraging Rust for high-performance, thread-safe
+                        applications. Actively seeking opportunities that align
+                        with career goals of contributing to impactful,
+                        real-world solutions in cutting-edge technology fields.
+                    </h3>
+                </div>
+            </section>
 
+            <section id="experience" class="container">
+                <h2>Work Experience</h2>
+                <div class="experience-item">
+                    <h3>Embedded Software Engineering Intern</h3>
+                    <p>Cognex Corporation | May 2024 - Current</p>
+                    <ul>
+                        <li>
+                            Researched and integrating Rust into a large
+                            CMake-based C++/C codebase, replacing an in-house
+                            HTTP server implementation responsible for multiple
+                            user-facing crashes due to memory related issues.
+                        </li>
+                        <li>
+                            Utilized the Corrosion crate and cxx for seamless
+                            C++ and Rust interoperability, ensuring smooth
+                            integration into the existing codebase.
+                        </li>
+                        <li>
+                            Leveraging Rust's memory safety to architect a
+                            robust and crash-resistant HTTP server, improving
+                            system stability while maintaining performace
+                            deltas.
+                        </li>
+                        <li>
+                            Implemented WebSocket upgrade protocols in Rust,
+                            enabling more modern features within the server.
+                        </li>
+                        <li>
+                            Utilized asynchronous Rust for thread-safe,
+                            optimized server management, ensuring efficient
+                            handling of multiple connections.
+                        </li>
+                        <li>
+                            Developed and executed unit and integration tests in
+                            both Rust and C++ to validate compatibility with
+                            existing FFI consumers.
+                        </li>
+                        <li>
+                            Reported daily findings and progress to scrum team
+                            of engineers.
+                        </li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>Mobile App Developer Intern</h3>
+                    <p>
+                        HIR Wellness Institute | September 2023 - December 2023
+                    </p>
+                    <ul>
+                        <li>
+                            Developed React Native mobile application for
+                            internal company scheduling of interns.
+                        </li>
+                        <li>
+                            Created interface between Firebase NoSQL database
+                            and JavaScript frontend.
+                        </li>
+                        <li>
+                            Created database schema depicting hierarchy of users
+                            with varying rights and access levels.
+                        </li>
+                        <li>
+                            Implemented Google Maps and Apple Maps API to create
+                            a real time map of all nearby events posted by
+                            administrators.
+                        </li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>Full Stack .NET Developer Intern</h3>
+                    <p>FitX On Demand | January 2023 - August 2023</p>
+                    <ul>
+                        <li>
+                            Developed cloud-based IoT solution for remote access
+                            QR codes that can scan into fitness content.
+                        </li>
+                        <li>
+                            Implemented secure zone identifier that bans video
+                            access if scan location is out of range from the
+                            designated hotel/gym.
+                        </li>
+                        <li>
+                            Leveraged AWS S3 buckets to host video content
+                            securely with limited endpoints open.
+                        </li>
+                        <li>
+                            Developed data visualization through QR code scan
+                            location statistics on a map along with dynamic QR
+                            code disabling based on how much variety these scan
+                            locations carried.
+                        </li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>Full Stack .NET Contract Developer</h3>
+                    <p>BrightBean Labs | November 2020 - January 2023</p>
+                    <ul>
+                        <li>
+                            Developed Asp.Net web applications and Xamarin Forms
+                            mobile applications for clients seeking unique
+                            software solutions in the .Net space.
+                        </li>
+                        <li>
+                            Developed Denver Health DHREM scheduling platform:
+                            an Asp.Net built application providing continuously
+                            integrated scheduling services in real time for
+                            Denver Health resident interns.
+                        </li>
+                        <li>
+                            Used Xamarin forms and MVC architecture to develop
+                            an IoT mobile solution for smart truck engine
+                            warmers that could be dynamically controlled through
+                            the app.
+                        </li>
+                    </ul>
+                </div>
+            </section>
 
-                    <li>
-                        <a href="https://github.com/BradenEverson">
-                            <span class="underline">GitHub</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://crates.io/users/BradenEverson">
-                            <span class="underline">Crates.io</span>
-                        </a>
-                    </li>
-
-
-                    <li>
-                        <a href="./files/Braden Everson.pdf" download>
-                            <span class="underline">Resume</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-
-        <section id="summary">
-            <h2>Summary</h2>
-            <div class="summary">
-                <h3>
-                    Dedicated Software Engineering Intern at Cognex Corporation with hands-on experience in full stack
-                    development and embedded systems. Strong background in Rust, C, C++, with a focus on embedded
-                    systems that make a difference for the world. Passionate about roles involving embedded
-                    systems, firmware development, and leveraging Rust for high-performance, thread-safe applications.
-                    Actively seeking opportunities that align with career goals of contributing to impactful, real-world
-                    solutions in cutting-edge technology fields.
-                </h3>
-            </div>
-        </section>
-
-        <section id="experience" class="container">
-            <h2>Work Experience</h2>
-            <div class='experience-item'><h3>Embedded Software Engineering Intern</h3><p>Cognex Corporation | May 2024 - Current</p><ul><li>Researched and integrating Rust into a large CMake-based C++/C codebase, replacing an in-house HTTP server implementation responsible for multiple user-facing crashes due to memory related issues.</li><li>Utilized the Corrosion crate and cxx for seamless C++ and Rust interoperability, ensuring smooth integration into the existing codebase.</li><li>Leveraging Rust's memory safety to architect a robust and crash-resistant HTTP server, improving system stability while maintaining performace deltas.</li><li>Implemented WebSocket upgrade protocols in Rust, enabling more modern features within the server.</li><li>Utilized asynchronous Rust for thread-safe, optimized server management, ensuring efficient handling of multiple connections.</li><li>Developed and executed unit and integration tests in both Rust and C++ to validate compatibility with existing FFI consumers.</li><li>Reported daily findings and progress to scrum team of engineers.</li></ul></div><div class='experience-item'><h3>Mobile App Developer Intern</h3><p>HIR Wellness Institute | September 2023 - December 2023</p><ul><li>Developed React Native mobile application for internal company scheduling of interns.</li><li>Created interface between Firebase NoSQL database and JavaScript frontend.</li><li>Created database schema depicting hierarchy of users with varying rights and access levels.</li><li>Implemented Google Maps and Apple Maps API to create a real time map of all nearby events posted by administrators.</li></ul></div><div class='experience-item'><h3>Full Stack .NET Developer Intern</h3><p>FitX On Demand | January 2023 - August 2023</p><ul><li>Developed cloud-based IoT solution for remote access QR codes that can scan into fitness content.</li><li>Implemented secure zone identifier that bans video access if scan location is out of range from the designated hotel/gym.</li><li>Leveraged AWS S3 buckets to host video content securely with limited endpoints open.</li><li>Developed data visualization through QR code scan location statistics on a map along with dynamic QR code disabling based on how much variety these scan locations carried.</li></ul></div><div class='experience-item'><h3>Full Stack .NET Contract Developer</h3><p>BrightBean Labs | November 2020 - January 2023</p><ul><li>Developed Asp.Net web applications and Xamarin Forms mobile applications for clients seeking unique software solutions in the .Net space.</li><li>Developed Denver Health DHREM scheduling platform: an Asp.Net built application providing continuously integrated scheduling services in real time for Denver Health resident interns.</li><li>Used Xamarin forms and MVC architecture to develop an IoT mobile solution for smart truck engine warmers that could be dynamically controlled through the app.</li></ul></div>
-        </section>
-
-        <section id="projects" class="container">
-            <h2>Projects</h2>
-            <div class='project-item'><h3>📍<i class="featured">pinned project</i> <br/> Unda - Open-Source Machine Learning Library in Rust from Scratch 🌊</h3><ul><li>Led the development of the <i>Unda</i> machine learning library in Rust, designed for efficient execution of machine learning workloads.</li><li>Engineered an intermediate API for constructing neural networks using a sequence of computation nodes within a custom compute graph.</li><li>Integrated XLA bindings in Rust to dynamically compile and optimize compute graphs for accelerated execution.</li><li>Developed a high-level API to facilitate the creation of supervised machine learning models, with ongoing work on unsupervised and generative models.</li><li>Unda achieved 4th place in the 2024 MSOE ROSIE Supercomputer Challenge, demonstrating its effectiveness in large-scale ML tasks.</li></ul><b>Unda was a part of the 2024 MSOE ROSIE Supercomputer challenge and ranked 4th place overall!!</b><br/><a href="https://github.com/unda-ml/unda" target="_blank">Star Unda on GitHub</a></div><div class='project-item'><h3>Chromogotchi - Tamagotchi Living in a Chrome Extension</h3><ul><li>Utilizing GoLang, created a virtual pet chrome extension with a mongodb managed state</li><li>Developed websocket listener server in Go that could interact with a pet's state by feeding, playing with, and putting to sleep</li><li>Created lightweight Chrome extension that communicates with Heroku-hosted Go server to display the pet directly in the browser</li></ul><a href="https://github.com/BradenEverson/chromogotchi">GitHub Repo</a></div><div class='project-item'><h3>td - Tower Defense Game in Rust 🏗️</h3><ul><li>Developed a real-time, WebSocket-enabled tower defense game with a focus on multiplayer interactions.</li><li>Implemented a WebSocket server in Rust to handle real-time game state synchronization across multiple clients.</li><li>Designed an asynchronous server flow optimized for performance and low latency in a multiplayer environment.</li><li>Utilized TypeScript for the frontend to manage game state, render animations, and handle user inputs on an HTML5 canvas.</li></ul><a href="https://github.com/BradenEverson/td">GitHub Repo</a></div><div class='project-item'><h3>wunos - Rust-Based Uno Game Server 🃏</h3><ul><li>Developed a WebSocket-based server for playing Uno, written in Rust to ensure high performance and low latency.</li><li>Implemented the game logic, including rules enforcement and turn management, in a scalable, event-driven architecture.</li><li>Created a robust system for managing player connections, game state, and real-time interactions.</li><li>Integrated with a custom WebSocket client to provide a seamless multiplayer Uno experience.</li><li>Developed an intuitive and charming TUI for playing Uno directly from the terminal.</li></ul><a href="https://github.com/BradenEverson/wunos">GitHub Repo</a></div><div class='project-item'><h3>Embedded Machine Learning - Predictive Heart Attack Monitor 💓</h3><ul><li>Utilized the <a href="https://github.com/unda-ml/unda">Unda library</a> to train a dense neural network on the <a href="https://www.kaggle.com/datasets/rashikrahmanpritom/heart-attack-analysis-prediction-dataset">Heart Attack Analysis Prediction Dataset</a> from Kaggle.</li><li>Achieved a 96.08% accuracy rate using a model with approximately 512 parameters.</li><li>Exported the trained model as a custom .unda file for embedded use, enabling real-time inference on an ESP32-based circuit.</li><li>Developed firmware in Rust for the ESP32, integrating peripherals such as a heart rate sensor and LEDs to signal model predictions, housed within a custom 3D-printed case.</li></ul><b>This project was showcased at the 2024 MSOE ROSIE Supercomputer challenge and ranked 4th place overall!!</b><br/><a href="https://github.com/BradenEverson/unda-heart-embedded">Embedded Source Code</a><br/><a href="https://github.com/BradenEverson/unda-heart-attack-dnn">Model Source Code</a></div><div class='project-item'><h3>Embedded Machine Learning - Automated Plant Care ☀️💧</h3><ul><li>Leveraged the <a href="https://github.com/unda-ml/unda">Unda library</a> to develop a predictive model trained on sun exposure, soil moisture, and time since last watering to automate plant care.</li><li>Designed and integrated an ESP32-based embedded system that controls a water pump, moisture sensor, light sensor, and servo motor for plant care automation.</li><li>Trained a model with over 350,000 parameters, optimized using a supercomputer and exported as a custom .unda file for embedded deployment.</li><li>Implemented firmware in Rust for the ESP32, enabling the system to autonomously manage watering and shading based on model predictions.</li></ul><b>This project was showcased at the 2024 MSOE ROSIE Supercomputer challenge and ranked 4th place overall!!</b><br/><a href="https://github.com/BradenEverson/unda-garden-embedded">Embedded Source Code</a><br/><a href="https://github.com/BradenEverson/eden-model">Model Source Code</a></div><div class='project-item'><h3>SiteSmith - Rust CLI Tool for Generating Personal Websites 🛠️</h3><ul><li>Developed SiteSmith, a Rust-based CLI tool that automates the generation of personal websites using JSON-formatted project and work experience data.</li><li>Implemented features for parsing JSON data and generating HTML websites from customizable templates.</li><li>Published the tool on Cargo, making it publicly available for developers seeking to automate the creation of personal websites.</li></ul><b>This website was generated using SiteSmith!</b><br/><a href="https://github.com/BradenEverson/sitesmith">Source Code</a></div><div class='project-item'><h3>Machine Learning Drones - Embedded Deep Learning 🦾</h3><ul><li>Developing and implementing an autonomous drone capable of responding to hand signals using embedded deep learning algorithms.</li><li>Designed and trained a convolutional neural network for computer vision and path decision-making, enabling dynamic flight pattern adjustments.</li><li>Created a lightweight embedded Rust library to parse precompiled model weights and biases, enabling on-device inference with minimal resource consumption.</li><li>Developed a custom file format for compact storage of machine learning models, optimized for memory-constrained embedded systems.</li></ul></div><div class='project-item'><h3>Senior Capstone - Smart IoT Gardening Systems 🪴</h3><ul><li>Developed a smart gardening system that autonomously monitors and maintains plant health through IoT-enabled sensors and actuators.</li><li>Integrated soil moisture, temperature, and light sensors to dynamically adjust watering schedules and alert users to potential issues.</li><li>Connected the system to a mobile app, providing real-time data and remote control over the gardening environment.</li><li>Leveraged machine learning algorithms to predict optimal watering times and amounts, enhancing garden management efficiency.</li></ul></div>
-        </section>
-        <footer>
-            <p>&copy; 2024 Braden Everson :)</p>
-        </footer>
-    </div>
-</body>
-
+            <section id="projects" class="container">
+                <h2>Projects</h2>
+                <div class="project-item">
+                    <h3>
+                        📍<i class="featured">pinned project</i> <br />
+                        Unda - Open-Source Machine Learning Library in Rust from
+                        Scratch 🌊
+                    </h3>
+                    <ul>
+                        <li>
+                            Led the development of the <i>Unda</i> machine
+                            learning library in Rust, designed for efficient
+                            execution of machine learning workloads.
+                        </li>
+                        <li>
+                            Engineered an intermediate API for constructing
+                            neural networks using a sequence of computation
+                            nodes within a custom compute graph.
+                        </li>
+                        <li>
+                            Integrated XLA bindings in Rust to dynamically
+                            compile and optimize compute graphs for accelerated
+                            execution.
+                        </li>
+                        <li>
+                            Developed a high-level API to facilitate the
+                            creation of supervised machine learning models, with
+                            ongoing work on unsupervised and generative models.
+                        </li>
+                        <li>
+                            Unda achieved 4th place in the 2024 MSOE ROSIE
+                            Supercomputer Challenge, demonstrating its
+                            effectiveness in large-scale ML tasks.
+                        </li>
+                    </ul>
+                    <b
+                        >Unda was a part of the 2024 MSOE ROSIE Supercomputer
+                        challenge and ranked 4th place overall!!</b
+                    ><br /><a
+                        href="https://github.com/unda-ml/unda"
+                        target="_blank"
+                        >Star Unda on GitHub</a
+                    >
+                </div>
+                <div class="project-item">
+                    <h3>
+                        Chromogotchi - Tamagotchi Living in a Chrome Extension
+                    </h3>
+                    <ul>
+                        <li>
+                            Utilizing GoLang, created a virtual pet chrome
+                            extension with a mongodb managed state
+                        </li>
+                        <li>
+                            Developed websocket listener server in Go that could
+                            interact with a pet's state by feeding, playing
+                            with, and putting to sleep
+                        </li>
+                        <li>
+                            Created lightweight Chrome extension that
+                            communicates with Heroku-hosted Go server to display
+                            the pet directly in the browser
+                        </li>
+                    </ul>
+                    <a href="https://github.com/BradenEverson/chromogotchi"
+                        >GitHub Repo</a
+                    >
+                </div>
+                <div class="project-item">
+                    <h3>td - Tower Defense Game in Rust 🏗️</h3>
+                    <ul>
+                        <li>
+                            Developed a real-time, WebSocket-enabled tower
+                            defense game with a focus on multiplayer
+                            interactions.
+                        </li>
+                        <li>
+                            Implemented a WebSocket server in Rust to handle
+                            real-time game state synchronization across multiple
+                            clients.
+                        </li>
+                        <li>
+                            Designed an asynchronous server flow optimized for
+                            performance and low latency in a multiplayer
+                            environment.
+                        </li>
+                        <li>
+                            Utilized TypeScript for the frontend to manage game
+                            state, render animations, and handle user inputs on
+                            an HTML5 canvas.
+                        </li>
+                    </ul>
+                    <a href="https://github.com/BradenEverson/td"
+                        >GitHub Repo</a
+                    >
+                </div>
+                <div class="project-item">
+                    <h3>wunos - Rust-Based Uno Game Server 🃏</h3>
+                    <ul>
+                        <li>
+                            Developed a WebSocket-based server for playing Uno,
+                            written in Rust to ensure high performance and low
+                            latency.
+                        </li>
+                        <li>
+                            Implemented the game logic, including rules
+                            enforcement and turn management, in a scalable,
+                            event-driven architecture.
+                        </li>
+                        <li>
+                            Created a robust system for managing player
+                            connections, game state, and real-time interactions.
+                        </li>
+                        <li>
+                            Integrated with a custom WebSocket client to provide
+                            a seamless multiplayer Uno experience.
+                        </li>
+                        <li>
+                            Developed an intuitive and charming TUI for playing
+                            Uno directly from the terminal.
+                        </li>
+                    </ul>
+                    <a href="https://github.com/BradenEverson/wunos"
+                        >GitHub Repo</a
+                    >
+                </div>
+                <div class="project-item">
+                    <h3>
+                        Embedded Machine Learning - Predictive Heart Attack
+                        Monitor 💓
+                    </h3>
+                    <ul>
+                        <li>
+                            Utilized the
+                            <a href="https://github.com/unda-ml/unda"
+                                >Unda library</a
+                            >
+                            to train a dense neural network on the
+                            <a
+                                href="https://www.kaggle.com/datasets/rashikrahmanpritom/heart-attack-analysis-prediction-dataset"
+                                >Heart Attack Analysis Prediction Dataset</a
+                            >
+                            from Kaggle.
+                        </li>
+                        <li>
+                            Achieved a 96.08% accuracy rate using a model with
+                            approximately 512 parameters.
+                        </li>
+                        <li>
+                            Exported the trained model as a custom .unda file
+                            for embedded use, enabling real-time inference on an
+                            ESP32-based circuit.
+                        </li>
+                        <li>
+                            Developed firmware in Rust for the ESP32,
+                            integrating peripherals such as a heart rate sensor
+                            and LEDs to signal model predictions, housed within
+                            a custom 3D-printed case.
+                        </li>
+                    </ul>
+                    <b
+                        >This project was showcased at the 2024 MSOE ROSIE
+                        Supercomputer challenge and ranked 4th place
+                        overall!!</b
+                    ><br /><a
+                        href="https://github.com/BradenEverson/unda-heart-embedded"
+                        >Embedded Source Code</a
+                    ><br /><a
+                        href="https://github.com/BradenEverson/unda-heart-attack-dnn"
+                        >Model Source Code</a
+                    >
+                </div>
+                <div class="project-item">
+                    <h3>
+                        Embedded Machine Learning - Automated Plant Care ☀️💧
+                    </h3>
+                    <ul>
+                        <li>
+                            Leveraged the
+                            <a href="https://github.com/unda-ml/unda"
+                                >Unda library</a
+                            >
+                            to develop a predictive model trained on sun
+                            exposure, soil moisture, and time since last
+                            watering to automate plant care.
+                        </li>
+                        <li>
+                            Designed and integrated an ESP32-based embedded
+                            system that controls a water pump, moisture sensor,
+                            light sensor, and servo motor for plant care
+                            automation.
+                        </li>
+                        <li>
+                            Trained a model with over 350,000 parameters,
+                            optimized using a supercomputer and exported as a
+                            custom .unda file for embedded deployment.
+                        </li>
+                        <li>
+                            Implemented firmware in Rust for the ESP32, enabling
+                            the system to autonomously manage watering and
+                            shading based on model predictions.
+                        </li>
+                    </ul>
+                    <b
+                        >This project was showcased at the 2024 MSOE ROSIE
+                        Supercomputer challenge and ranked 4th place
+                        overall!!</b
+                    ><br /><a
+                        href="https://github.com/BradenEverson/unda-garden-embedded"
+                        >Embedded Source Code</a
+                    ><br /><a href="https://github.com/BradenEverson/eden-model"
+                        >Model Source Code</a
+                    >
+                </div>
+                <div class="project-item">
+                    <h3>
+                        SiteSmith - Rust CLI Tool for Generating Personal
+                        Websites 🛠️
+                    </h3>
+                    <ul>
+                        <li>
+                            Developed SiteSmith, a Rust-based CLI tool that
+                            automates the generation of personal websites using
+                            JSON-formatted project and work experience data.
+                        </li>
+                        <li>
+                            Implemented features for parsing JSON data and
+                            generating HTML websites from customizable
+                            templates.
+                        </li>
+                        <li>
+                            Published the tool on Cargo, making it publicly
+                            available for developers seeking to automate the
+                            creation of personal websites.
+                        </li>
+                    </ul>
+                    <b>This website was generated using SiteSmith!</b><br /><a
+                        href="https://github.com/BradenEverson/sitesmith"
+                        >Source Code</a
+                    >
+                </div>
+                <div class="project-item">
+                    <h3>Machine Learning Drones - Embedded Deep Learning 🦾</h3>
+                    <ul>
+                        <li>
+                            Developing and implementing an autonomous drone
+                            capable of responding to hand signals using embedded
+                            deep learning algorithms.
+                        </li>
+                        <li>
+                            Designed and trained a convolutional neural network
+                            for computer vision and path decision-making,
+                            enabling dynamic flight pattern adjustments.
+                        </li>
+                        <li>
+                            Created a lightweight embedded Rust library to parse
+                            precompiled model weights and biases, enabling
+                            on-device inference with minimal resource
+                            consumption.
+                        </li>
+                        <li>
+                            Developed a custom file format for compact storage
+                            of machine learning models, optimized for
+                            memory-constrained embedded systems.
+                        </li>
+                    </ul>
+                </div>
+                <div class="project-item">
+                    <h3>Senior Capstone - Smart IoT Gardening Systems 🪴</h3>
+                    <ul>
+                        <li>
+                            Developed a smart gardening system that autonomously
+                            monitors and maintains plant health through
+                            IoT-enabled sensors and actuators.
+                        </li>
+                        <li>
+                            Integrated soil moisture, temperature, and light
+                            sensors to dynamically adjust watering schedules and
+                            alert users to potential issues.
+                        </li>
+                        <li>
+                            Connected the system to a mobile app, providing
+                            real-time data and remote control over the gardening
+                            environment.
+                        </li>
+                        <li>
+                            Leveraged machine learning algorithms to predict
+                            optimal watering times and amounts, enhancing garden
+                            management efficiency.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <footer>
+                <p>&copy; 2024 Braden Everson :)</p>
+            </footer>
+        </div>
+    </body>
 </html>

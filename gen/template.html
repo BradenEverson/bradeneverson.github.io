@@ -1,80 +1,84 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Braden Everson :)</title>
+        <link rel="stylesheet" href="./style/styles.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Braden Everson :)</title>
-    <link rel="stylesheet" href="./style/styles.css">
-</head>
+    <body>
+        <div class="container">
+            <header>
+                <header class="flex justify-center">
+                    <img src="./files/me.png" class="profile" />
+                </header>
+                <h1>Braden Everson 🦀</h1>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="mailto:bradeneverson@gmail.com"
+                                ><span class="underline">Email</span></a
+                            >
+                        </li>
 
-<body>
-    <div class="container">
-        <header>
-            <header class="flex justify-center">
-                <img src="./files/me.png" class="profile" />
+                        <li>
+                            <a href="https://linkedin.com/in/braden-everson">
+                                <span class="underline">LinkedIn</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://github.com/BradenEverson">
+                                <span class="underline">GitHub</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="./blog/index.html">
+                                <span class="underline">Blog</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="./files/Braden Everson.pdf" download>
+                                <span class="underline">Resume</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </header>
-            <h1>Braden Everson 🦀</h1>
-            <nav>
-                <ul>
-                    <li><a href="mailto:bradeneverson@gmail.com"><span class="underline">Email</span></a></li>
 
-                    <li>
-                        <a href="https://linkedin.com/in/braden-everson">
-                            <span class="underline">LinkedIn</span>
-                        </a>
-                    </li>
+            <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary">
+                    <h3>
+                        Dedicated Software Engineering Intern at Cognex
+                        Corporation with hands-on experience in full stack
+                        development and embedded systems. Strong background in
+                        Rust, C, C++, with a focus on embedded systems that make
+                        a difference for the world. Passionate about roles
+                        involving embedded systems, firmware development, and
+                        leveraging Rust for high-performance, thread-safe
+                        applications. Actively seeking opportunities that align
+                        with career goals of contributing to impactful,
+                        real-world solutions in cutting-edge technology fields.
+                    </h3>
+                </div>
+            </section>
 
+            <section id="experience" class="container">
+                <h2>Work Experience</h2>
+                {work}
+            </section>
 
-                    <li>
-                        <a href="https://github.com/BradenEverson">
-                            <span class="underline">GitHub</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://crates.io/users/BradenEverson">
-                            <span class="underline">Crates.io</span>
-                        </a>
-                    </li>
-
-
-                    <li>
-                        <a href="./files/Braden Everson.pdf" download>
-                            <span class="underline">Resume</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-
-        <section id="summary">
-            <h2>Summary</h2>
-            <div class="summary">
-                <h3>
-                    Dedicated Software Engineering Intern at Cognex Corporation with hands-on experience in full stack
-                    development and embedded systems. Strong background in Rust, C, C++, with a focus on embedded
-                    systems that make a difference for the world. Passionate about roles involving embedded
-                    systems, firmware development, and leveraging Rust for high-performance, thread-safe applications.
-                    Actively seeking opportunities that align with career goals of contributing to impactful, real-world
-                    solutions in cutting-edge technology fields.
-                </h3>
-            </div>
-        </section>
-
-        <section id="experience" class="container">
-            <h2>Work Experience</h2>
-            {work}
-        </section>
-
-        <section id="projects" class="container">
-            <h2>Projects</h2>
-            {projects}
-        </section>
-        <footer>
-            <p>&copy; 2024 Braden Everson :)</p>
-        </footer>
-    </div>
-</body>
-
+            <section id="projects" class="container">
+                <h2>Projects</h2>
+                {projects}
+            </section>
+            <footer>
+                <p>&copy; 2024 Braden Everson :)</p>
+            </footer>
+        </div>
+    </body>
 </html>
