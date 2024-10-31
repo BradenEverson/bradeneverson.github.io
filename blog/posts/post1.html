@@ -1,46 +1,558 @@
 <!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Creating a WASM horror game</title>
+        <link rel="stylesheet" href="../../style/styles.css" />
+        <link
+            href="https://cdn.jsdelivr.net/gh/PrismJS/prism-themes@1.9.0/themes/prism-nord.css"
+            rel="stylesheet"
+        />
+    </head>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog post by me :)</title>
-    <link rel="stylesheet" href="../../style/styles.css" />
-</head>
-
-<body>
-    <div class="container">
+    <body>
         <header>
-            <h1>Physics Informed IoT Simulations in Rust</h1>
-            <h3>Braden Everson</h3>
+            <h1>Creating a Spooky Game with WASM</h1>
         </header>
+        <div id="description">
+            <h3>The Beginning</h3>
+            <p>
+                I tend to have this dangerous habit involving projects and the
+                time at which I choose to write them. Specifically, I get really
+                into a project right when I'm about to have a handful of exams.
+                This previous midterm batch was no exception. I found myself
+                getting increasingly interested in the usage of
+                <b>Webassembly</b> for creating advanced state machines that
+                would then be exposed through a simple API into a static HTML
+                frontend. At the same time as this, I wanted to make something
+                spooky for Halloween. Lastly, and most importantly, I was really
+                missing my dog this past semester. All of these seemed to
+                accumulate into a perfect storm of project inspiration:
+            </p>
+            <i>
+                <b
+                    >I should create Five Night's at Freddy's in the browser
+                    where all enemies are my dogs</b
+                ></i
+            >
+            <p>It was a perfect idea.</p>
+            <br />
+            <h3>A Quick Explanation of Five Night's At Freddy's</h3>
+            <p>
+                Before we dive into the code and all of the fun stuff I can't
+                wait to write about, we should probably quickly go over what
+                game I'm attempting to <s>steal</s> draw inspiration from. Five
+                Night's at Freddy's is an indie horror game involving 4 robot
+                mascots hunting down the player. The player is imobile, and must
+                instead use the plethora of security cameras at their disposal
+                and 2 electronically controlled metal doors to prevent the
+                monsters from getting into their office. The doors and cameras
+                both draw significant power from the office, and using all of
+                the power up will result in an outage, leaving the player
+                completely exposed to any enemies wandering nearby. In order to
+                win, the player must successfully ward off all enemies and
+                prevent them from getting in until the in-game clock hits 6 AM.
+            </p>
+            <p>
+                This is primarily how I want my game to function, however there
+                are a few deviations between the official game and mine. Most
+                specifically, in the original Five Night's at Freddy's the
+                office layout is <b>fixed</b>. In creating my version, I wanted
+                to play around with randomized office generation, as I had an
+                hunch I would probably need to use graphs for this task and that
+                sounded fun (I got nerd sniped).
+            </p>
+            <div class="center">
+                <img src="./assets/nerd_sniping.png" />
+            </div>
+            <h3>Starting Development</h3>
+            <p>
+                To begin this project, I created a new Rust crate and scaffolded
+                out the general structs I thought I would need. Primarily, a
+                <b class="inline-code">GameState</b> struct responsible for
+                ticking the game forward, managing power consumption, signalling
+                enemy behavior, and declaring when the player has won/lost. A
+                simplified version of this struct looks as follows:
+            </p>
 
-        <section id="post">
-            <article>
-                <i class="date">Published on September 5, 2024</i>
-                <div class="post-content">
-                    <p>
-                        One of the things I have always been super interested in is the world of physical simulations.
-                        On top of this, I've loved IoT devices ever since I first got into programming. One of the first
-                        projects I ever made was some very hacky Jack-O-Lantern that used the Google Cloud Voice
-                        Recognition service to dispense candy when people said "trick or treat" into it. As my skills in
-                        Rust developed, I found myself very interested in seeing <i>if</i> I could create something I've
-                        always wanted to: <b>a system of modular peripherals that could be visualized through a 3D
-                            render dependent on the peripheral readings.</b>
-                    </p>
-                    <br />
-                    <p>
-                        For example, this could take the form of a physical plane armed with a gyroscope and
-                        accelerometer. As pitch and poll vary, a 3D render of the plane would respond accordingly. This
-                        has many real-world applications, but truthfully I enjoy the silly ones.
-                    </p>
-            </article>
-        </section>
+            <div class="rust">
+                <pre><code class="language-rust">
+                /// The game's internal state, responsible for keeping track of what enemies we have, where they
+                /// are, if our doors are closed, what time it is, etc!
+                pub struct GameState {
+                    /// The current time
+                    ticks: u64,
+                    /// The map as graph-like structure
+                    pub map: Map,
+                    /// If the left door is closed
+                    left_door: bool,
+                    /// If the right door is closed
+                    right_door: bool,
+                    /// Are the cameras on
+                    cameras_on: bool,
+                    /// How much power is left
+                    power: i32,
+                    /// The current power draw (per tick)
+                    draw: i32,
+                    /// Are we dead?
+                    dead: bool,
+                    /// What is our target ticks
+                    ticks_needed_to_win: u64,
+                }
+              </code></pre>
+            </div>
+            <p>
+                A lot of this struct is simply bool tags and tick tracking. This
+                makes sense as this entire state machine is essentially a
+                slightly more complicated counter. Every time
+                <b class="inline-code">tick()</b> is called we increment the
+                tick count by 1, and decrement the current power by whatever the
+                draw is. Draw is determined by the amount of door shut and
+                camera on flags that are on, and once the ticks reached is
+                higher than the ticks required to win, we return that the game
+                has been won!
+            </p>
 
-        <footer>
-            <p>&copy; 2024 Braden Everson :)</p>
-        </footer>
-    </div>
-</body>
+            <p>
+                From this perspective, the
+                <b class="inline-code">tick()</b> method could be written simply
+                as follows:
+            </p>
 
+            <div class="rust">
+                <pre><code class="language-rust">
+                    impl GameState {
+                        pub fn tick(&mut self) -> bool {
+                            self.ticks += 1;
+
+                            self.power -= self.draw;
+
+                            self.ticks == self.ticks_needed_to_win
+                        }
+                    }
+              </code></pre>
+            </div>
+
+            <p>
+                Of course, this is an overly simplified perspective on the game,
+                as we also need to have a <i>reason</i> why the player might be
+                checking cameras or closing doors. We need enemies.
+            </p>
+
+            <h3>Enemies</h3>
+            <p>
+                Enemies(or as I named them in the source code, <i>freaks</i>)
+                are inherently dynamic entities that should behave differently
+                from one another. After all, if you had a game where every enemy
+                simply b-lined it straight to you, you'd have a pretty
+                monotonous game. For example, my dog Teller would likely prey
+                and stalk directly towards me, whereas my cockapoo Frank would
+                probably wander aimlessly in hopes that he may accidentally win.
+                As such, enemy behavior would be better represented as a
+                <b>Trait</b>.
+            </p>
+
+            <p>
+                The <b class="inline-code">EnemyBehavior</b> trait encapsulates
+                this providing a single function, also named
+                <b class="inline-code">tick()</b>. An enemies behavior should be
+                determined based on the context of where they currently are in
+                the map and what their previous actions were, therefore this
+                method takes a reference to the existing
+                <b class="inline-code">GameState</b>. From this, the behavior
+                returns an <b class="inline-code">Action</b> enum with the
+                following variants:
+            </p>
+
+            <div class="rust">
+                <pre><code class="language-rust">
+                    pub enum Action {
+                        /// Move to room `RoomId`
+                        Move(RoomId),
+                        /// Perform some special action specific to the enemy
+                        Special(Box&lt;dyn SideEffect&gt;),
+                        /// Attack the player if close enough
+                        Attack,
+                        /// Or do nothing
+                        Nothing,
+                    }
+              </code></pre>
+            </div>
+            <i>
+                Note: the <b class="inline-code">Special</b> variant exists to
+                allow special enemies to do things like disable room cameras or
+                spawn in new enemies. This isn't currently utilized with the
+                enemies I have created, but I wanted it to exist as an option in
+                case that changes in the future.
+            </i>
+            <p>
+                Furthermore, as mentioned earlier with Frank, what if an enemy
+                needs to do some sort of randomized operations? In this case,
+                it's likely a better practice to include a mutable reference to
+                some Rng for any implementation that may need it, preventing
+                them from creating their own Rng once every tick (which does not
+                sound very efficient). With all of these considerations in mind,
+                here's what the final design for the
+                <b class="inline-code">EnemyBehavior</b> trait looks like:
+            </p>
+            <div class="rust">
+                <pre><code class="language-rust">
+                    pub trait EnemyBehavior {
+                        fn tick(&mut self, curr_state: &GameState, id: EnemyId) -> Vec&lt;Action&gt;;
+                    }
+                </code></pre>
+            </div>
+            <i>
+                Note: We return a
+                <b class="inline-code">Vec&lt;Action&gt;</b> instead of just an
+                <b class="inline-code">Action</b> to account for enemies that
+                perform several actions in a turn (such as turn off cameras and
+                move at the same time)</i
+            >
+            <p>
+                Now, in order to dynamically hold all enemies with different
+                behavior, we can hold onto a
+                <b class="inline-code">Box&lt;dyn EnemyBehavior&gt;</b> to allow
+                for dynamic usage of the trait objects! For the reason of borrow
+                checker rules that involved the
+                <b class="inline-code">GameState</b> owning the enemies and
+                trying to mutate them and itself at the same time, I moved the
+                enemy container out of <b class="inline-code">GameState</b> and
+                into a new <b class="inline-code">Game</b> struct that would
+                hold onto the enemies, the current game, and an Rng instance to
+                send through during ticks. One more cool thing we do here is
+                instead of holding the enemys in one spot and sharing references
+                to them all over the place, the game actually stores them in a
+                <b class="inline-code">SlotMap&lt;EnemyId, Freak&gt;</b> and
+                shares the copyable <b class="inline-code">EnemyId</b> all over
+                the place. Neat!
+            </p>
+            <i
+                >Note: SlotMaps are pretty much exactly the same as HashMaps,
+                but upon insertion you are returned a generated key instead of
+                needing to provide one. The Rust slotmap crate provides a macro
+                for describing a attributeless struct as a slotmap key, which as
+                far as I've seen essentially boils it down into a tagged u64.
+                This EnemyId struct is one of these key types, and for map
+                generation we do something similar with a RoomId</i
+            >
+            <h3>Adding Frank</h3>
+            <p>
+                Now that we have the blueprints for how an enemy's behavior is
+                derived, let's go through the simplest enemy AI, Frank!
+            </p>
+            <div class="center">
+                <img src="./assets/frank.png" />
+            </div>
+            <p>
+                As previously stated, if Frank were a murderous beast bent on
+                killing a player, he would probably do it by wandering
+                aimlessly. To reflect this, Frank's AI behavior will move about
+                randomly. A small part of Frank's implementation involves the
+                <b class="inline-code">Map</b> struct that I haven't gone over
+                yet and will not go over until after this section, so just know
+                for now that all you need to know is that a Map is collection of
+                Rooms where each Room has a collection of Ids that point to
+                other rooms. With this knowledge of state in mind, implementing
+                Frank is as easy as:
+            </p>
+
+            <div class="rust">
+                <pre><code class="language-rust">
+                    pub struct FrankBehavior&lt;RNG: Rng&gt; {
+                        rng: RNG,
+                    }
+
+                    impl&lt;RNG: Rng&gt; EnemyBehavior for FrankBehavior&lt;RNG&gt; {
+                        fn tick(&mut self, curr_state: &GameState, id: EnemyId) -> Vec&lt;Action&gt; {
+                            if let Some(enemy_room) = curr_state.map.get_enemy_room(id) {
+                                let rooms = curr_state[enemy_room].connections();
+                                let goto = rooms.choose(&mut self.rng);
+
+                                if goto == &curr_state.office.root {
+                                    vec![Action::Attack]
+                                } else {
+                                    vec![Action::Move(*goto)]
+                                }
+                            } else {
+                                vec![Action::Nothing]
+                            }
+                        }
+                    }
+              </code></pre>
+            </div>
+
+            <h3>Map Generation</h3>
+            <p>
+                Since we've been assuming this
+                <b class="inline-code">Map</b> struct has existed, so we might
+                as well jump into that now! The map itself will be yet another
+                <b class="inline-code">Slotmap</b>, this time containing a
+                special <b class="inline-code">Room</b> struct.
+            </p>
+            <p>
+                In this way, all a Map really is is a graph of nodes with Room
+                data, with connections essentially acting as "hallways" between
+                these rooms. This makes enemy AI for pathfinding nothing more
+                than a simple graph traversal. As far as generating the actual
+                map goes, there are a few ground rules that every Map should
+                follow:
+            </p>
+            <ul>
+                <li>
+                    Every Map should have a Root "office" that the player
+                    occupies and enemies target.
+                </li>
+                <li>
+                    Every office should have only a left and right hallway
+                    connection. These rooms signal to the player that an enemy
+                    is right outside their door
+                </li>
+                <li>
+                    All remaining rooms should connect in some way (either
+                    directly or through a sequence of rooms) to either the left
+                    or right higway. Why would we want a building that doesn't
+                    have rooms fully connected?
+                </li>
+            </ul>
+            <p>
+                So with these rules in mind, map generation should start with a
+                "root" batch of nodes, manually creating an office and it's
+                adjacent hallways. From there, rng should take the wheel and
+                create some N number of new rooms with connections to the
+                previously existent rooms (any room but the office). In the
+                actual implementation, we do this initial pass and then go back
+                through and create a few extra random connections to reduce the
+                tree-looking-ness of the office.
+            </p>
+            <p>
+                The method returns a RootOfficeInfo struct that bundles up the
+                office and hallways nicely. It also returns a list of all Rooms
+                where an enemy spawning is viable, to prevent enemies from
+                spawing in a random room which would be pretty unfair. The code
+                in all of its glory is as follows:
+            </p>
+
+            <div class="rust">
+                <pre><code class="language-rust">
+                    pub fn generate&gt;RNG: Rng&lt;(&mut self, rng: &mut RNG) -> (RootRoomInfo, Vec&lt;RoomId&gt;) {
+                            let mut office = Room::default();
+                            let mut left = Room::default();
+                            let mut right = Room::default();
+
+                            office.set_name("office");
+                            left.set_name("left_entrance");
+                            right.set_name("right_entrance");
+
+                            let mut hallway_left = Room::default();
+                            let mut hallway_right = Room::default();
+
+                            hallway_left.set_name("left_hallway");
+                            hallway_right.set_name("right_hallway");
+
+                            let office = self.0.insert(office);
+                            let left = self.0.insert(left);
+                            let right = self.0.insert(right);
+                            let hallway_left = self.0.insert(hallway_left);
+                            let hallway_right = self.0.insert(hallway_right);
+
+                            self.connect_rooms(office, left);
+                            self.connect_rooms(office, right);
+
+                            self.connect_rooms(left, hallway_left);
+                            self.connect_rooms(right, hallway_right);
+
+                            let additional_rooms: usize = rng.gen_range(7..=9);
+                            let mut room_ids = vec![hallway_left, hallway_right];
+
+                            for _ in 0..additional_rooms {
+                                let new_room = self.0.insert(Room::default());
+                                let existing_room = *room_ids.choose(rng).unwrap();
+
+                                self.connect_rooms(new_room, existing_room);
+                                room_ids.push(new_room)
+                            }
+
+                            let extra_connections: usize = rng.gen_range(1..=3);
+                            for _ in 0..extra_connections {
+                                let room_a = *room_ids.choose(rng).unwrap();
+                                let room_b = *room_ids.choose(rng).unwrap();
+
+                                if room_a != room_b && !self.0[room_a].conencts_to.contains(&room_b) {
+                                    self.connect_rooms(room_a, room_b);
+                                }
+                            }
+
+                            // Generate viable rooms to spawn enemies in, cannot be directly connected to the main
+                            // rooms
+                            let mut viable_spawn_rooms: Vec<_> = room_ids
+                                .into_iter()
+                                .filter(|id| !self.0[*id].connects_to_any(&[&left, &right]))
+                                .collect();
+                            let mut spawn_rooms = vec![];
+                            let spawn_rooms_count: usize = rng.gen_range(1..=4);
+
+                            for _ in 0..spawn_rooms_count {
+                                if let Some(popped) = viable_spawn_rooms.pop() {
+                                    spawn_rooms.push(popped);
+                                }
+                            }
+
+                            (
+                                RootRoomInfo {
+                                    root: office,
+                                    left,
+                                    right,
+                                },
+                                spawn_rooms,
+                            )
+                        }
+                </code></pre>
+            </div>
+            <p>
+                This is definitely a lot of code, but nothing too crazy. In my
+                experience Slotmaps have been a very nice paradigm for
+                graph-based structures, as it keeps you away from throwing
+                everything in boxes or refcells. With the graph designed like
+                this, we can design a pretty simple pathfinding algorithm by
+                attemtping to traverse the Room graph until we find the room
+                with the target ID. This method keeps context of the previous
+                rooms explored while checking <i>every</i> possible connection
+                in a queue. This is my preferred paradigm of graph traversal in
+                Rust, as it makes state management and comprehensibility much
+                better for myself than a recursive function may (although I
+                cannot lie and say recursive functions aren't awesome (although
+                I cannot lie and say recursive functions aren't awesome (...)))
+            </p>
+            <div class="rust">
+                <pre><code class="language-rust">
+                    pub fn generate_path(&self, from: RoomId, to: RoomId) -> Option<Vec<RoomId>> {
+                            let mut search_queue = VecDeque::new();
+                            let mut seen = HashSet::new();
+                            let mut predecessors = HashMap::new();
+
+                            search_queue.push_front(from);
+                            seen.insert(from);
+
+                            while let Some(check_room) = search_queue.pop_back() {
+                                if check_room == to {
+                                    let mut path = Vec::new();
+                                    let mut current = to;
+                                    while current != from {
+                                        path.push(current);
+                                        current = *predecessors.get(&current)?;
+                                    }
+                                    path.push(from);
+                                    path.reverse();
+                                    return Some(path);
+                                }
+
+                                for &next_room in &self.0[check_room].conencts_to {
+                                    if seen.insert(next_room) {
+                                        search_queue.push_front(next_room);
+                                        predecessors.insert(next_room, check_room);
+                                    }
+                                }
+                            }
+
+                            None
+                        }
+                </code></pre>
+            </div>
+
+            <h3>Updating <b class="inline-code">tick()</b></h3>
+            <p>
+                Now that we have some more advanced game logic and data
+                structures in place, we'll need to move all enemies forward
+                every time they're supposed to. Going back to that simplified
+                tick method from before, now is the time to get that a little
+                more beefy. There isn't too much to add because the code is all
+                segmented in a nice and cohesive way, we simply need to iterate
+                over enemies, get their actions, perform their actions if
+                possible, and check if those actions would kill us!
+            </p>
+
+            <div class="rust">
+                <pre><code class="language-rust">
+                    pub fn tick<RNG: Rng>(&mut self, enemies: &mut SlotMap<EnemyId, Freak>, rng: &mut RNG) -> bool {
+                            self.ticks += 1;
+
+                            if self.ticks == self.ticks_needed_to_win {
+                                // WE WON
+                                return true;
+                            }
+
+                            self.power -= self.draw;
+                            // Check if power's out after the draw, opening all the doors if so
+                            self.out_of_power();
+
+                            for (id, enemy) in enemies {
+                                if let Some(time) = self.cooldowns.get(&id) {
+                                    if self.ticks % time == 0 {
+                                        // It's action time
+                                        enemy.tick(id, self, rng);
+                                    }
+                                } else {
+                                    let new_cooldown = enemy.gen_cooldown(rng);
+                                    self.cooldowns.insert(id, new_cooldown);
+                                }
+                            }
+
+                            // Check if someone's in our office who isn't us
+                            if self.map.room_has_enemies(self.office.root) {
+                                self.dead = true
+                            }
+
+                            // We haven't won :(
+                            false
+                        }
+                </code></pre>
+            </div>
+
+            <p>
+                And just like that, we have pretty much everything in place to
+                play a game of Five Night's at Teller's! There's a bit more
+                boring stuff I didn't include, mostly power draw mechanics and
+                door closing interfaces, we'll focus more on the cool map and
+                enemy AI bits.
+            </p>
+
+            <h3>Putting it All Together</h3>
+            <p>
+                Now that the Rust logic was finished, porting it into
+                Webassembly was very very easy. Throwing a
+                <b class="inline-code">#[wasm_bindgen]</b> proc macro atop a few
+                structs and impl blocks here and there and we have access to the
+                game state machine as an opaque type. Interfacing with it and
+                moving forward the game logic did have it's slight JS
+                challenges, such as translating the graph into a visual UI.
+                These challenges weren't a part of my initial goal, but I still
+                had a lot of fun figuring out how to fit all of the pieces
+                together. As such, however, I won't go too in depth about them
+                here. Maybe there's a world where they're covered more in a part
+                2 :)
+            </p>
+            <p>
+                Overall, I had a really fun time making this entire project. It
+                demanded a lot of unique problems to be solved that really
+                required me to whip out some good data structures to pull off.
+                This and the portability of wasm made it a very cool experience.
+                To play the game, either visit
+                <a href="https://bradeneverson.github.io/five-nights-at-tellers"
+                    >this link</a
+                >, check out the source code
+                <a
+                    href="https://github.com/BradenEverson/five-nights-at-tellers"
+                    >here</a
+                >, or play the embedded version below:
+            </p>
+            <embed
+                src="https://bradeneverson.github.io/five-nights-at-tellers"
+                style="width: 100%; height: 50em"
+            />
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"></script>
+    </body>
 </html>
