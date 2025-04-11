@@ -15,18 +15,6 @@
         "extra": []
     },
     {
-        "name": "Mobile App Developer Intern",
-        "location": "HIR Wellness Institute",
-        "timespan": "September 2023 - December 2023",
-        "descr": [
-            "Developed React Native mobile application for internal company scheduling of interns.",
-            "Created interface between Firebase NoSQL database and JavaScript frontend.",
-            "Created database schema depicting hierarchy of users with varying rights and access levels.",
-            "Implemented Google Maps and Apple Maps API to create a real time map of all nearby events posted by administrators."
-        ],
-        "extra": []
-    },
-    {
         "name": "Full Stack .NET Developer Intern",
         "location": "FitX On Demand",
         "timespan": "January 2023 - August 2023",
