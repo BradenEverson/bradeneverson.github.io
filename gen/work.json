@@ -1,16 +1,26 @@
 [
     {
+        "name": "Firmware Engineering Intern",
+        "location": "Milwaukee Tool",
+        "timespan": "May 2025 - Current",
+        "descr": [
+            "Working on the IoT firmware features team with specific focus on BLE",
+            "Investigating new BLE features including Periodic Advertising and Broadcast Isochronous Streams and their uses in Tool BLE Firmware",
+            "Implementing new BLE features in existing Firmware on both internal devkits and Stm32WBA55G-DK1 kits"
+        ],
+        "extra": []
+    },
+    {
         "name": "Embedded Software Engineering Intern",
         "location": "Cognex Corporation",
-        "timespan": "May 2024 - Current",
+        "timespan": "May 2024 - May 2025",
         "descr": [
             "Researched and integrating Rust into a large CMake-based C++/C codebase, replacing an in-house HTTP server implementation responsible for multiple user-facing crashes due to memory related issues.",
             "Utilized the Corrosion crate and cxx for seamless C++ and Rust interoperability, ensuring smooth integration into the existing codebase.",
-            "Leveraging Rust's memory safety to architect a robust and crash-resistant HTTP server, improving system stability while maintaining performace deltas.",
+            "Leveraged Rust's memory safety to architect a robust and crash-resistant HTTP server, improving system stability while maintaining performace deltas.",
             "Implemented WebSocket upgrade protocols in Rust, enabling more modern features within the server.",
             "Utilized asynchronous Rust for thread-safe, optimized server management, ensuring efficient handling of multiple connections.",
-            "Developed and executed unit and integration tests in both Rust and C++ to validate compatibility with existing FFI consumers.",
-            "Reported daily findings and progress to scrum team of engineers."
+            "Developed and executed unit and integration tests in both Rust and C++ to validate compatibility with existing FFI consumers."
         ],
         "extra": []
     },
