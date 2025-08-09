@@ -25,6 +25,17 @@
     ]
   },
   {
+    "name": "bf-jit - Just in Time Brainfuck Compiler",
+    "descr": [
+        "Created an interpreter, assembler, ELF64 compiler and Just In Time compiler for the BrainFuck language",
+        "Generic tokenizer interface that can then target any of the 4 implemented runtimes",
+        "Learned the Elf64 spec to generate a raw x86-64 binary for the runtime"
+    ],
+    "extra": [
+      "<a href=\"https://github.com/BradenEverson/bf-jit\">GitHub Repo</a>"
+    ]
+  },
+  {
     "name": "Chalk - Calculator interpreter with discrete math operations and graphing capabilities",
     "descr": [
         "Created a top down LL parser for mathematical expressions",

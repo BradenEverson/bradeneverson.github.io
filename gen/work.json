@@ -2,11 +2,11 @@
     {
         "name": "Firmware Engineering Intern",
         "location": "Milwaukee Tool",
-        "timespan": "May 2025 - Current",
+        "timespan": "May 2025 - August 2025",
         "descr": [
-            "Working on the IoT firmware features team with specific focus on BLE",
-            "Investigating new BLE features including Periodic Advertising and Broadcast Isochronous Streams and their uses in Tool BLE Firmware",
-            "Implementing new BLE features in existing Firmware on both internal devkits and Stm32WBA55G-DK1 kits"
+            "Worked on the Platform Electronics - Tool Intelligence FW team",
+            "Investigated BLE features including Periodic Advertising and Broadcast Isochronous Streams and their uses in Tool BLE Firmware",
+            "Propsed and Designed systems for complex Firmware BLE systems and topologies"
         ],
         "extra": []
     },
