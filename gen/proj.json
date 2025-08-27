@@ -25,6 +25,19 @@
     ]
   },
   {
+    "name": "thoth - Preemptive and Collaborative Scheduler for an Embedded RTOS",
+    "descr": [
+        "Implemented a basic scheduler that can register tasks as concurrent processes",
+        "The scheduler contains a `yield` that performs a proper context switch based on a modular compile time scheduling algorithm",
+        "Created a modular backend system that allows different context switching assembly logic for different CPU architectures that is determined at compile time",
+        "Made a demo Stm32 Nucleo project that uses the scheduler to concurrently run 2 tasks"
+    ],
+    "extra": [
+      "<a href=\"https://github.com/BradenEverson/thoth\">GitHub Repo</a>",
+      "<a href=\"https://github.com/BradenEverson/thoth_meets_stm32\">Stm32 Demo of the scheduler that controls two LED blinker tasks</a>"
+    ]
+  },
+  {
     "name": "bf-jit - Just in Time Brainfuck Compiler",
     "descr": [
         "Created an interpreter, assembler, ELF64 compiler and Just In Time compiler for the BrainFuck language",
