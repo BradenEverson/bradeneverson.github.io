@@ -1,5 +1,18 @@
 [
     {
+        "name": "📍<i class=\"featured\">pinned project</i> <br/> thoth - Preemptive and Collaborative Scheduler for an Embedded RTOS",
+        "descr": [
+            "Implemented a basic scheduler that can register tasks as concurrent processes",
+            "The scheduler contains a `yield` that performs a proper context switch based on a modular compile time scheduling algorithm",
+            "Created a modular backend system that allows different context switching assembly logic for different CPU architectures that is determined at compile time",
+            "Made a demo Stm32 Nucleo project that uses the scheduler to concurrently run 2 tasks"
+        ],
+        "extra": [
+            "<a href=\"https://github.com/BradenEverson/thoth\">GitHub Repo</a>",
+            "<a href=\"https://github.com/BradenEverson/thoth_meets_stm32\">Stm32 Demo of the scheduler that controls two LED blinker tasks</a>"
+        ]
+    },
+    {
         "name": "📍<i class=\"featured\">pinned project</i> <br/> MaoLang - Interpreted Language with Randomized Syntax Rules",
         "descr": [
             "Inspired by <a href = \"https://en.wikipedia.org/wiki/Mao_(card_game)\">the card game</a>, created an interpreted language with dynamic syntax rules that change based on the Sha256 hash of the file being interpreted (as an April fools joke)",
@@ -12,32 +25,6 @@
         ]
     },
   {
-    "name": "📍<i class=\"featured\">pinned project</i> <br/> Page Rank and TUI Search Engine from Scratch",
-    "descr": [
-        "Implemented the PageRank algorithm from scratch to analyze and rank web pages based on their link structure",
-        "Created a basic linear algebraic type system with Matrix operations tied directly to type (i.e. only stochastic matrices can get a steady state solution)",
-        "Created a web crawler that stores sites and all links they hold",
-        "Constructed a graph based interpretation of the site crawling that could be transformed into a stochastic matrix plus bias",
-        "Wrapped this entire process into a TUI web browser application that performs the algorithm upon search"
-    ],
-    "extra": [
-        "<a href=\"https://github.com/BradenEverson/page_rank_from_scratch\">GitHub Repo</a>"
-    ]
-  },
-  {
-    "name": "thoth - Preemptive and Collaborative Scheduler for an Embedded RTOS",
-    "descr": [
-        "Implemented a basic scheduler that can register tasks as concurrent processes",
-        "The scheduler contains a `yield` that performs a proper context switch based on a modular compile time scheduling algorithm",
-        "Created a modular backend system that allows different context switching assembly logic for different CPU architectures that is determined at compile time",
-        "Made a demo Stm32 Nucleo project that uses the scheduler to concurrently run 2 tasks"
-    ],
-    "extra": [
-      "<a href=\"https://github.com/BradenEverson/thoth\">GitHub Repo</a>",
-      "<a href=\"https://github.com/BradenEverson/thoth_meets_stm32\">Stm32 Demo of the scheduler that controls two LED blinker tasks</a>"
-    ]
-  },
-  {
     "name": "bf-jit - Just in Time Brainfuck Compiler",
     "descr": [
         "Created an interpreter, assembler, ELF64 compiler and Just In Time compiler for the BrainFuck language",
@@ -47,6 +34,19 @@
     "extra": [
       "<a href=\"https://github.com/BradenEverson/bf-jit\">GitHub Repo</a>"
     ]
+  },
+  {
+      "name": "Page Rank and TUI Search Engine from Scratch",
+      "descr": [
+          "Implemented the PageRank algorithm from scratch to analyze and rank web pages based on their link structure",
+          "Created a basic linear algebraic type system with Matrix operations tied directly to type (i.e. only stochastic matrices can get a steady state solution)",
+          "Created a web crawler that stores sites and all links they hold",
+          "Constructed a graph based interpretation of the site crawling that could be transformed into a stochastic matrix plus bias",
+          "Wrapped this entire process into a TUI web browser application that performs the algorithm upon search"
+      ],
+      "extra": [
+          "<a href=\"https://github.com/BradenEverson/page_rank_from_scratch\">GitHub Repo</a>"
+      ]
   },
   {
     "name": "Chalk - Calculator interpreter with discrete math operations and graphing capabilities",
@@ -70,17 +70,6 @@
     ],
     "extra": [
       "<a href=\"https://github.com/BradenEverson/miami\">GitHub Repo</a>"
-    ]
-  },
-  {
-    "name": "Chromogotchi - Tamagotchi Living in a Chrome Extension",
-    "descr": [
-      "Using GoLang, created a virtual pet chrome extension with a mongodb managed state",
-      "Developed websocket listener server in Go that could interact with a pet's state by feeding, playing with, and putting to sleep",
-      "Created lightweight Chrome extension that communicates with Heroku-hosted Go server to display the pet directly in the browser"
-    ],
-    "extra": [
-      "<a href=\"https://github.com/BradenEverson/chromogotchi\">GitHub Repo</a>"
     ]
   },
   {
@@ -120,34 +109,8 @@
           "<a href=\"https://github.com/unda-ml/unda\" target=\"_blank\">Star Unda on GitHub</a>"
       ]
   },
-  {
-    "name": "Embedded Machine Learning - Predictive Heart Attack Monitor 💓",
-    "descr": [
-      "Used the <a href=\"https://github.com/unda-ml/unda\">Unda library</a> to train a dense neural network on the <a href=\"https://www.kaggle.com/datasets/rashikrahmanpritom/heart-attack-analysis-prediction-dataset\">Heart Attack Analysis Prediction Dataset</a> from Kaggle.",
-      "Achieved a 96.08% accuracy rate using a model with approximately 512 parameters.",
-      "Exported the trained model as a custom .unda file for embedded use, enabling real-time inference on an ESP32-based circuit.",
-      "Developed firmware in Rust for the ESP32, integrating peripherals such as a heart rate sensor and LEDs to signal model predictions, housed within a custom 3D-printed case."
-    ],
-    "extra": [
-      "<b>This project was showcased at the 2024 MSOE ROSIE Supercomputer challenge and ranked 4th place overall!!</b>",
-      "<a href=\"https://github.com/BradenEverson/unda-heart-embedded\">Embedded Source Code</a>",
-      "<a href=\"https://github.com/BradenEverson/unda-heart-attack-dnn\">Model Source Code</a>"
-    ]
-  },
-  {
-    "name": "Embedded Machine Learning - Automated Plant Care ☀️💧",
-    "descr": [
-      "Leveraged the <a href=\"https://github.com/unda-ml/unda\">Unda library</a> to develop a predictive model trained on sun exposure, soil moisture, and time since last watering to automate plant care.",
-      "Designed and integrated an ESP32-based embedded system that controls a water pump, moisture sensor, light sensor, and servo motor for plant care automation.",
-      "Trained a model with over 350,000 parameters, optimized using a supercomputer and exported as a custom .unda file for embedded deployment.",
-      "Implemented firmware in Rust for the ESP32, enabling the system to autonomously manage watering and shading based on model predictions."
-    ],
-    "extra": [
-      "<b>This project was showcased at the 2024 MSOE ROSIE Supercomputer challenge and ranked 4th place overall!!</b>",
-      "<a href=\"https://github.com/BradenEverson/unda-garden-embedded\">Embedded Source Code</a>",
-      "<a href=\"https://github.com/BradenEverson/eden-model\">Model Source Code</a>"
-    ]
-  },
+
+
   {
     "name": "SiteSmith - Rust CLI Tool for Generating Personal Websites 🛠️",
     "descr": [
@@ -159,16 +122,6 @@
       "<b>This website was generated using SiteSmith!</b>",
       "<a href=\"https://github.com/BradenEverson/sitesmith\">Source Code</a>"
     ]
-  },
-  {
-    "name": "Machine Learning Drones - Embedded Deep Learning 🦾",
-    "descr": [
-      "Developing and implementing an autonomous drone capable of responding to hand signals using embedded deep learning algorithms.",
-      "Designed and trained a convolutional neural network for computer vision and path decision-making, enabling dynamic flight pattern adjustments.",
-      "Created a lightweight embedded Rust library to parse precompiled model weights and biases, enabling on-device inference with minimal resource consumption.",
-      "Developed a custom file format for compact storage of machine learning models, optimized for memory-constrained embedded systems."
-    ],
-    "extra": []
   },
   {
     "name": "Senior Capstone - Smart IoT Gardening Systems 🪴",
