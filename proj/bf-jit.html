@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MaoLang - Braden Everson</title>
+        <title>bf-jit - Braden Everson</title>
         <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
@@ -24,9 +24,63 @@
             </div>
         </section>
 
-        <section id="implementation">
+                <section id="implementation">
             <h2>Implementation</h2>
             <div class="section-content">
+                <h3>Architecture Overview</h3>
+                <p>The bf-jit system follows a modular architecture with a unified frontend that can target multiple backends:</p>
+                
+                <div class="architecture-diagram">
+                    <pre>
+Brainfuck Source -> Tokenizer -> Abstract Syntax Tree
+                                      |
+                                      v
+              +----------------+----------------+-----------------+
+              |                |                |                 |
+         Interpreter      Assembler        ELF Compiler      JIT Compiler
+              |                |                |                 |
+         treewalk        x86 assembly    Standalone binary   Native execution
+                    </pre>
+                </div>
+
+                <h3>Tokenizer and Parser</h3>
+                <p>The system begins with a generic tokenizer that processes Brainfuck source code into tokens representing the eight Brainfuck commands: <code>&gt;</code>, <code>&lt;</code>, <code>+</code>, <code>-</code>, <code>.</code>, <code>,</code>, <code>[</code>, and <code>]</code>. Repeated operations of the same type are compressed into a single token with repeated metadata (aside from loop boundaries)</p>
+
+                <h3>1. Interpreter Backend</h3>
+                <p>The interpreter is the simplest backend, executing Brainfuck commands directly:</p>
+                <ul>
+                    <li>Maintains a 30,000-byte tape buffer</li>
+                    <li>Uses a pc pointer and data pointer</li>
+                    <li>Directly runs through a loop moving the pc</li>
+                </ul>
+
+                <h3>2. Assembler Backend</h3>
+                <p>The assembler backend generates x86-64 assembly code from the Brainfuck IR:</p>
+                <ul>
+                    <li>Maps Brainfuck operations to equivalent x86-64 instructions</li>
+                    <li>Creates a 30,000 byte buffer <code>tape</code> in the bss section</li>
+                    <li>Uses labels to manage looping</li>
+                    <li>Outputs a .s file that can be compiled with a tool like <code>clang</code></li>
+                </ul>
+
+                <h3>3. ELF64 Compiler</h3>
+                <p>The most complex static compilation backend generates complete ELF64 executables:</p>
+                <ul>
+                    <li>Manually constructs ELF headers, program headers, and section headers from a raw byte buffer</li>
+                    <li>Generates proper entry point and 30k byte buffer in bss</li>
+                    <li>Similar to the assembler, maps each instruction to the x86-64 instruction(s). Only this time it's raw machine code.</li>
+                    <li>To deal with loops, keeps a count of how many bytes each instruction is and does a relatie jump by that byte count in between</li>
+                    <li>Outputs a raw executable file</li>
+                </ul>
+
+                <h3>4. JIT Compiler</h3>
+                <p>The JIT compiler provides the speed of the compiler at the convenience level of the interpreter:</p>
+                <ul>
+                    <li>Allocates executable memory pages using <code>mmap</code> with <code>PROT_EXEC</code></li>
+                    <li>Maps 30k byte buffer in program space before executing the <code>mmap</code>ed and just passes a pointer to it</li>
+                    <li>Emits raw x86-64 machine code directly to memory in the same way the compiler does</li>
+                    <li>On finish, treats the memory like a function pointer and executes it directly</li>
+                </ul>
             </div>
         </section>
 
