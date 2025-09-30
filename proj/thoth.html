@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thoth - Braden Everson</title>
+    <link rel="stylesheet" href="../style.css"/>
+</head>
+<body>
+    <a href="../index.html" class="back-link">← Back to all projects</a>
+
+    <header>
+        <h1>Thoth</h1>
+        <p class="project-description">Preemptive and Collaborative Task Scheduler for an Embedded RTOS</p>
+    </header>
+
+    <img src="./img/thoth-diagram.png" alt="Thoth Drawing" class="project-image">
+    <p class="image-caption">How I imagined process schedulers before diving into Thoth</p>
+
+    <section id="motivation">
+        <h2>Motivation</h2>
+        <div class="section-content">
+            <p>I'm someone who really only learns once I understand what's going on underneath the hood. I think operating systems are the coolest thing ever, so naturally I really wanted to tinker around with what makes them work. As such, Thoth was created as a toy task scheduler that actually runs on baremetal hardware.</p>
+        </div>
+    </section>
+
+    <section id="implementation">
+        <h2>Implementation</h2>
+        <div class="section-content">
+            <p>The scheduler implements both preemptive and cooperative multitasking models. Tasks are registered as concurrent processes with configurable priorities and stack sizes.</p>            
+            <p>Thoth was also created with modularity and runtime efficiency in mind. Being used at every context switch, it is super important that the time spent in scheduler-land is very very limited. Thanks to Zig's powerful compile time system, backend assembly and even generic scheduling algorithm choices are all determined at compile time, allowing for powerful interfaces without the need for runtime vtables</p>
+            <p>Key implementation details:</p>
+            <ul>
+                <li>Modular compile-time scheduling algorithm selection</li>
+                <li>Architecture-agnostic design with architecture-specific context switching</li>
+                <li>Efficient context switching using minimal assembly code</li>
+                <li>Support for both round-robin and priority-based scheduling</li>
+                <li>Memory protection through stack boundary checking</li>
+            </ul>
+
+            
+            <p>The system includes a yield() function that performs proper context switching based on the selected scheduling algorithm. The modular backend allows different context switching assembly logic for different CPU architectures, determined at compile time.</p>
+            
+            <img src="./img/blinky.gif" alt="Thoth in action" class="project-image">
+            <p class="image-caption">Thoth driving two different blinking LED tasks concurrently</p>
+        </div>
+    </section>
+
+    <section id="links">
+        <h2>Related Links</h2>
+        <div class="links-section">
+            <a href="https://github.com/BradenEverson/thoth">GitHub Repository</a>
+            <a href="https://github.com/BradenEverson/thoth_meets_stm32">STM32 Demo - Controlling Two LED Blinker Tasks</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>Who copyrights lol</p>
+    </footer>
+</body>
+</html>

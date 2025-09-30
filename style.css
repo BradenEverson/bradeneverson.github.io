@@ -1,0 +1,139 @@
+body {
+    font-family: Consolas, monospace;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    color: #fff;
+    background: #000;
+}
+
+header {
+    margin-bottom: 3rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 2.5rem 0 1rem 0;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 0.5rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+}
+
+.project-category {
+    margin-bottom: 2rem;
+}
+
+.project-category h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem 0;
+}
+
+.project-item {
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+}
+
+.project-item a {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid #666;
+    transition: border-color 0.2s;
+}
+
+.project-item a:hover {
+    border-color: #fff;
+}
+
+footer {
+    margin-top: 4rem;
+    padding-top: 1rem;
+    border-top: 1px solid #fff;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.back-link {
+    margin-bottom: 2rem;
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid #666;
+    transition: border-color 0.2s;
+}
+
+.back-link:hover {
+    border-color: #fff;
+}
+
+.project-description {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #333;
+}
+
+.section-content {
+    margin-bottom: 2rem;
+}
+
+.links-section {
+    background: #111;
+    padding: 1.5rem;
+    border-left: 3px solid #fff;
+    margin: 1.5rem 0;
+}
+
+.links-section a {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid #666;
+    transition: border-color 0.2s;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.links-section a:hover {
+    border-color: #fff;
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin: 1.5rem 0;
+    border: 1px solid #444;
+}
+
+.image-caption {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-top: -1rem;
+    margin-bottom: 1.5rem;
+}
+
+.code {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 20px;
+    line-height: 1.5;
+    overflow-x: auto;
+    border: 1px solid #333;
+}

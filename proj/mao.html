@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MaoLang - Braden Everson</title>
+        <link rel="stylesheet" href="../style.css"/>
+    </head>
+    <body>
+        <a href="../index.html" class="back-link">← Back to all projects</a>
+
+        <header>
+            <h1>Mao</h1>
+            <p class="project-description">Joke Language with Dynamically Changing Syntax Rules</p>
+        </header>
+
+        <img src="./img/maoerr.png" alt="Mao syntax failing" class="project-image">
+        <p class="image-caption">Sample of Mao getting mad at a changing syntax rule</p>
+
+        <section id="motivation">
+            <h2>Motivation</h2>
+            <div class="section-content">
+                <p>At my first internship, another intern on the team I was on taught me about this card game named Mao. The whole point of Mao is that you are not told any of the rules and instead are punished when you break one. At a team outing we were talking about implementing interpreters when I mentioned it would be funny to have a language like Mao - one with syntax rules that would change when you went to run the program, causing an infinite cycle of fixing syntax and breaking new syntax.</p>
+                <p>Fast forward to March of that year and I was finally getting comfortable making interpreters with recursive descent parsers. It was also conveniently close to April Fool's day, which made me realize I had an amazing opportunity: Make Mao a real language and prank my friends with it.</p>
+            </div>
+        </section>
+
+        <section id="implementation">
+            <h2>Implementation</h2>
+            <div class="section-content">
+                <p>Mao is implemented in Rust as a recursive descent parser with a unique twist: the syntax rules are dynamically generated based on a hash of the source code itself.</p>
+
+                <h3>Core Architecture</h3>
+                <p>The interpreter follows a traditional pipeline:</p>
+                <ol>
+                    <li><strong>Source Hashing</strong>: The interpreter computes a SHA256 hash of the source code (that excludes whitespace so you can't cheat) to create a deterministic seed</li>
+                    <li><strong>Rule Generation</strong>: Using this seed, the interpreter generates random but consistent syntax rules for the current file</li>
+                    <li><strong>Tokenizing</strong>: Using the generated rules, the tokenizer will properly tokenize the valid keywords for the rules, but also keep track of any identifiers that look like they belong to a different ruleset for "nice" error messages.</li>
+                    <li><strong>Parsing</strong>: The parser enforces the dynamically generated grammar rules</li>
+                    <li><strong>Execution</strong>: A simple treewalker executes the validated AST</li>
+                </ol>
+
+                <h3>Dynamic Syntax Generation</h3>
+                <p>The syntax randomization covers:</p>
+                <ul>
+                    <li><strong>Variable Declaration</strong>: 6 possible forms including `let`, `var`, `def`, `make`, `create`, and `new`</li>
+                    <li><strong>Conditional Statements</strong>: 3 different keywords for if statements: `if`, `when`, `check`</li>
+                    <li><strong>Boolean Values</strong>: 4 variations for true and false, including `:)` as true and `:(` as false</li>
+                    <li><strong>Output Statements</strong>: Multiple possible print commands like `print`, `say`, `output`, `fmt.Println`</li>
+                    <li><strong>Statement Terminators</strong>: Random choice between `;`, `.`, or the word `done`</li>
+                    <li><strong>Parenthesis Rules</strong>: Sometimes required, sometimes optional for function calls and expressions</li>
+                </ul>
+
+                <h3>Testing</h3>
+                <p>Generating valid Mao is hard, very hard. Even harder as your file gets larger. As such, I created a brute forcing script to try all syntax combinations for a desired file, which fails most of the time as well.</p>
+                <p>After a lot of trial and error, a few working Mao scripts were eventually created, here is the longest valid Mao script in all it's beauty:</p>
+
+                <div class="code">
+                    <pre><code>
+    if ( :( ) :
+        console.log("If/Else statements are working :D");
+    } then :
+        console.log("It's False");
+    }
+                    </pre></code>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="links">
+            <h2>Related Links</h2>
+            <div class="links-section">
+                <a href="https://github.com/BradenEverson/mao">GitHub Repository</a>
+                <a href="https://www.reddit.com/r/ProgrammingLanguages/comments/1jov0hg/maolang_a_language_with_rules_that_change_when/">Reddit Post about Mao</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>Who copyrights lol</p>
+        </footer>
+    </body>
+</html>
