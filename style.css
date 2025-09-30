@@ -125,3 +125,15 @@ footer {
     margin-top: -1rem;
     margin-bottom: 1.5rem;
 }
+
+.code {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 20px;
+    line-height: 1.5;
+    overflow-x: auto;
+    border: 1px solid #333;
+}
