@@ -20,16 +20,17 @@
         <section id="motivation">
             <h2>Motivation</h2>
             <div class="section-content">
-                <p></p>
+                <p>Ever since learning to create an interpreter, I had been increasingly interested in going deepr. I wanted to learn compilation, optimization and just in time compilation. I knew this was going to be a very heavy set of content to go in blindly, so I knew I wanted to implement all of this on a smaller scale to start. BrainFuck, being a very very simple turing-complete language, was the perfect target for this exactly</p>
+                <p><code>bf-jit</code> provides every step of this process as independent runtime targets that can be swapped out: a basic interpreter, an assembler, an ELF64 compiler and finally a Just In Time x86-64 compiler</p>
             </div>
         </section>
 
-                <section id="implementation">
+        <section id="implementation">
             <h2>Implementation</h2>
             <div class="section-content">
                 <h3>Architecture Overview</h3>
                 <p>The bf-jit system follows a modular architecture with a unified frontend that can target multiple backends:</p>
-                
+
                 <div class="architecture-diagram">
                     <pre>
 Brainfuck Source -> Tokenizer -> Abstract Syntax Tree
