@@ -33,9 +33,9 @@
 
                 <div class="architecture-diagram">
                     <pre>
-Brainfuck Source -> Tokenizer -> Abstract Syntax Tree
-                                      |
-                                      v
+Brainfuck Source -> Tokenizer -> Intermediate Representation
+                                          |
+                                          v
               +----------------+----------------+-----------------+
               |                |                |                 |
          Interpreter      Assembler        ELF Compiler      JIT Compiler
@@ -47,7 +47,7 @@ Brainfuck Source -> Tokenizer -> Abstract Syntax Tree
                 <h3>Tokenizer and Parser</h3>
                 <p>The system begins with a generic tokenizer that processes Brainfuck source code into tokens representing the eight Brainfuck commands: <code>&gt;</code>, <code>&lt;</code>, <code>+</code>, <code>-</code>, <code>.</code>, <code>,</code>, <code>[</code>, and <code>]</code>. Repeated operations of the same type are compressed into a single token with repeated metadata (aside from loop boundaries)</p>
 
-                <h3>1. Interpreter Backend</h3>
+                <h3>1. Interpreter</h3>
                 <p>The interpreter is the simplest backend, executing Brainfuck commands directly:</p>
                 <ul>
                     <li>Maintains a 30,000-byte tape buffer</li>
@@ -55,7 +55,7 @@ Brainfuck Source -> Tokenizer -> Abstract Syntax Tree
                     <li>Directly runs through a loop moving the pc</li>
                 </ul>
 
-                <h3>2. Assembler Backend</h3>
+                <h3>2. Assembler</h3>
                 <p>The assembler backend generates x86-64 assembly code from the Brainfuck IR:</p>
                 <ul>
                     <li>Maps Brainfuck operations to equivalent x86-64 instructions</li>
