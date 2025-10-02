@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FNAT - Braden Everson</title>
+        <link rel="stylesheet" href="../style.css"/>
+    </head>
+    <body>
+        <header>
+            <h1>Five Nights At Teller's</h1>
+            <p class="project-description">Horror Game Featuring my Dog</p>
+        </header>
+
+        <embed
+            src="https://bradeneverson.github.io/five-nights-at-tellers"
+            style="width: 100%; height: 50em"
+            />
+
+            <section id="motivation">
+                <h2>Motivation</h2>
+                <div class="section-content">
+                    <p>I tend to have this dangerous habit involving projects and the time at which I choose to write them. Specifically, I get really into a project right when I'm about to have a handful of exams. This previous midterm batch was no exception.</p>
+                    <p>I found myself getting increasingly interested in the usage of <b>Webassembly</b> for creating advanced state machines that would then be exposed through a simple API into a static HTML frontend.</p>
+                    <p>At the same time as this, I wanted to make something spooky for Halloween. Lastly, and most importantly, I was really missing my dog this past semester. All of these seemed to accumulate into a perfect storm of project inspiration:</p>
+
+                    <i><b>I should create Five Night's at Freddy's in the browser where all enemies are my dogs</b></i>
+
+                    <p>The original Five Nights at Freddy's is a horror game where you play as a security guard trying to survive against murderous animatronics using limited power for security cameras and doors. I wanted to capture that tense, resource-management gameplay while adding my own twist: procedurally generated office layouts and AI behaviors that reflect my dogs' actual personalities.</p>
+                </div>
+            </section>
+
+            <section id="implementation">
+                <h2>Implementation</h2>
+                <div class="section-content">
+                    <p>The core of the game is a Rust state machine compiled to WebAssembly, with a clean API exposed to a JavaScript frontend. The architecture centers around several key components:</p>
+
+                    <h3>Game State Management</h3>
+                    <p>The <code>GameState</code> struct manages the core game loop, tracking time, power consumption, door states, and victory conditions. Each <code>tick()</code> advances the game, reduces power based on current usage (cameras and doors), and checks for win/loss conditions.</p>
+
+                    <h3>Enemy AI System</h3>
+                    <p>Enemies implement an <code>EnemyBehavior</code> trait that defines how they act each turn. This allowed me to create distinct personalities for each "dog" enemy. For example, Frank (my cockapoo) wanders randomly through the office, while Teller uses more strategic pathfinding to hunt the player like the predator he is.</p>
+
+                    <p>The behavior system returns <code>Action</code> enums that can include movement, attacks, or special abilities, allowing for complex enemy behaviors that make each playthrough unique. <code>Action</code> can also include a nested list of <code>Action</code>s, causing complex emergent behavior from enemies that can do multiple or conditional things each movement</p>
+
+                    <h3>Procedural Map Generation</h3>
+                    <p>Unlike the fixed layout of the original game, I implemented randomized office generation using graph structures. The map is built as a collection of rooms connected by hallways, with the player's office as the root node. The generation algorithm ensures:</p>
+                    <ul>
+                        <li>A consistent office with left/right door connections</li>
+                        <li>Fully connected room graphs</li>
+                        <li>Balanced enemy spawn locations</li>
+                        <li>Visual variety between games</li>
+                    </ul>
+
+                    <h3>WebAssembly Integration</h3>
+                    <p>Using <code>wasm-bindgen</code>, the Rust game logic was easily exposed to JavaScript with minimal overhead. The state machine runs efficiently in WASM while the frontend handles rendering and user input, demonstrating the power of WebAssembly for performance-critical web applications.</p>
+
+                    <p>The entire system uses <code>SlotMap</code> for efficient entity management, making enemy and room lookups fast while avoiding Rust's borrow checker complications that often arise in graph-based game architectures.</p>
+                </div>
+            </section>
+
+            <section id="links">
+                <h2>Related Links</h2>
+                <div class="links-section">
+                    <a href="https://github.com/BradenEverson/five-nights-at-tellers">GitHub Repository</a>
+                </div>
+            </section>
+            <footer></footer>
+    </body>
+</html>
