@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>td - Braden Everson</title>
+        <link rel="stylesheet" href="../style.css"/>
+    </head>
+    <body>
+        <a href="../index.html" class="back-link">← Back to all projects</a>
+
+        <header>
+            <h1>Multiplayer Tower Defense</h1>
+            <p class="project-description">Real-time Browser-based Tower Defense Game</p>
+        </header>
+
+        <img src="./img/td.png" alt="Game" class="project-image">
+        <p class="image-caption">Sample game between two players, showing the unit reload mechanism and economy</p>
+
+        <section id="motivation">
+            <h2>Motivation</h2>
+            <div class="section-content">
+                <p>This project represented my final deep dive into async Rust and WebSocket protocols. I wanted to tackle a significant technical challenge that would push my understanding of massive communication and concurrent systems. A multiplayer tower defense game presented the perfect opportunity to explore these concepts, as I was really obsessed with The Battle Cats at the time.</p>
+
+                <p>Beyond the technical learning objectives, I wanted to create a polished, full-stack application that demonstrated the power of Rust for backend systems and TypeScript for responsive frontend interfaces, all connected through efficient WebSocket communication.</p>
+            </div>
+        </section>
+
+        <section id="implementation">
+            <h2>Implementation</h2>
+            <div class="section-content">
+                <p>The game architecture follows a client-server model with Rust handling the backend game logic and TypeScript managing the frontend rendering and user interactions.</p>
+
+                <h3>Backend Architecture</h3>
+                <p>The Rust server implements a real-time game engine using async WebSocket connections. One of the most innovative aspects is the dynamic unit loading system. Game units are defined as JSON files in a dedicated units directory, which are processed at compile time using a custom build script. This script reads all unit definitions and embeds them as static strings that are lazily deserialized into Unit structs when first accessed.</p>
+
+                <p>In the User struct, every player owns their WebSocket write channel, allowing the server to efficiently broadcast game state updates without complex routing logic. This design enables centralized read handling while maintaining direct, optimized write paths to each connected client.</p>
+
+                <h3>Game Systems</h3>
+                <p>The game features comprehensive tower defense mechanics including:</p>
+                <ul>
+                    <li>Strategic unit placement with unique attributes (power, health, speed)</li>
+                    <li>Cooldown-based attack systems</li>
+                    <li>Economy and resource management</li>
+                    <li>Real-time multiplayer synchronization</li>
+                </ul>
+
+                <h3>Frontend Implementation</h3>
+                <p>The TypeScript frontend uses the canvas for all rendering. It owns one end of the Client's websocket, and responds to enemy spawn events and damage ticks accordingly. Because we're using emojis for everything, that also means we don't need to handle any sprite or animation logic other than applying a cosine function to a text element for each unit.</p>
+            </div>
+        </section>
+
+        <section id="links">
+            <h2>Related Links</h2>
+            <div class="links-section">
+                <a href="https://github.com/BradenEverson/td">GitHub Repository</a>
+            </div>
+        </section>
+        <footer></footer>
+    </body>
+</html>
