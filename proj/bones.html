@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mr. Bones - Braden Everson</title>
+        <link rel="stylesheet" href="../style.css"/>
+    </head>
+    <body>
+        <a href="../index.html" class="back-link">← Back to all projects</a>
+
+        <header>
+            <h1>Mr. Bones</h1>
+            <p class="project-description">Animatronic Halloween Friend</p>
+        </header>
+
+        <div class = "video-wrapper">
+            <iframe 
+                src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7390137782633062400?compact=1" 
+                frameborder="0"
+                title="Mr Bones Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        <p class="video-caption">Mr. Bones intro video</p>
+
+        <section id="motivation">
+            <h2>Motivation</h2>
+            <div class="section-content">
+                <p>After completing <a href="../gunther.html">GUNTHER</a>, my roommate and I wanted another project that would challenge us and still provide a comical result. It was September 28th at the time, and with Halloween close enough we decided we wanted to create something in theme. That's when Mr. Bones was born, the idea to create a skeleton who would look around and converse with anybody on Halloween.</p>
+            </div>
+        </section>
+        <section id="implementation">
+            <h2>Implementation</h2>
+            <div class="section-content">
+                <p>Mr. Bones was implemented as a distributed system of four specialized processes running on a Raspberry Pi, communicating through POSIX message queues and pipes to enable real-time conversation and physical animation.</p>
+
+                <h3>System Architecture</h3>
+                <p>The system is composed of four independent processes that work in concert:</p>
+
+                <div class="process-detail">
+                    <h4>Jaw Controller</h4>
+                    <p>This process handles the physical actuation of the animatronic's jaw. It opens a message queue at <code>/jaw-control</code> and listens for a simple binary protocol:</p>
+                    <ul>
+                        <li><code>0x01</code> → Start talking (jaw movement)</li>
+                        <li><code>0x00</code> → Stop talking (jaw at rest)</li>
+                    </ul>
+                </div>
+
+                <div class="process-detail">
+                    <h4>Neck Controller</h4>
+                    <p>Responsible for managing the neck motion states, this process listens to a message queue at <code>/neck-control</code> and responds to the following commands:</p>
+                    <ul>
+                        <li><code>0x00</code> → Idle: Look around to random angles with noise every 2-8 seconds</li>
+                        <li><code>0x01</code> → Listening: Look straight forward with slight movement every 5 seconds</li>
+                        <li><code>0x02</code> → Thinking: Look upward in thought with subtle head movements</li>
+                    </ul>
+                </div>
+
+                <div class="process-detail">
+                    <h4>Speech Process</h4>
+                    <p>This is the central coordination process that uses Vosk for speech-to-text recognition. It manages a state machine with two primary states:</p>
+                    <ul>
+                        <li><strong>Wake Word Detection</strong>: Listens continuously for "Hey Mr Bones"</li>
+                        <li><strong>Conversation Mode</strong>: Captures user input after wake word detection</li>
+                    </ul>
+                    <p>When speech is detected, it sends the text to the LLM process through a pipe and coordinates the physical responses by sending appropriate commands to both the jaw and neck controllers. When the LLM responds, it uses Piper for text-to-speech synthesis and plays the audio through the speakers.</p>
+                </div>
+
+                <div class="process-detail">
+                    <h4>LLM Backend</h4>
+                    <p>Built using llama.cpp with <code>calme-3.1-llamaloi-3b-Q6_K.gguf</code> as the backing pretrained model, this process listens for conversation input through stdin (redirected from the speech process via pipes) and streams responses token-by-token through stdout. The model was specifically chosen for its balance of performance and resource requirements suitable for the Raspberry Pi platform.</p>
+                </div>
+
+                <h3>Performance Optimization</h3>
+                <p>To achieve real-time conversation with minimal latency, the system employs several optimization strategies:</p>
+                <ul>
+                    <li>Decoupled speech recognition and LLM generation into separate processes</li>
+                    <li>Token-by-token streaming from the LLM to enable overlapping speech synthesis</li>
+                    <li>Lightweight binary protocols for inter-process communication</li>
+                    <li>Predefined personality constraints to reduce LLM computation complexity</li>
+                </ul>
+
+                <p>The complete system successfully ran on Halloween, engaging in real-time conversations with my friends and family. It was pretty awesome :)</p>
+            </div>
+        </section>
+
+
+        <section id="links">
+            <h2>Related Links</h2>
+            <div class="links-section">
+                <a href="https://www.linkedin.com/posts/braden-everson_super-excited-to-share-out-what-mason-maile-activity-7390137950908506112-83q7?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC2VricB4W-_aOdQGZxX9BNfp-9xeYKLmE0">LinkedIn Post</a>
+            </div>
+        </section>
+        <footer></footer>
+    </body>
+</html>
