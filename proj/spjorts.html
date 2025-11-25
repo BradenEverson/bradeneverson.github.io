@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WASM Spjorts - Braden Everson</title>
+        <link rel="stylesheet" href="../style.css"/>
+    </head>
+    <body>
+        <a href="../index.html" class="back-link">← Back to all projects</a>
+
+        <header>
+            <h1>WASM Spjorts</h1>
+            <p class="project-description">Hardware Controllable 3D WASM Game Engine</p>
+        </header>
+
+        <div class = "video-wrapper">
+            <iframe 
+                src="./img/bowling.mp4" 
+                frameborder="0"
+                title="WASM Spjorts Demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        <p class="video-caption">Sample Showcasing the Bowling Game!</p>
+
+        <section id="motivation">
+            <h2>Motivation</h2>
+            <div class="section-content">
+                <p>I am someone who is always passionate about creating unique and complex system architectures. To put this to the absolute test, I wanted to design a game system that could smoothly handle real world accelerometer controller data from a controller connecting over WiFi. I had also been spending a lot of tiem playing Wii Sports at the time, so naturally I knew where this design should culminate: My own registry of poorly hand drawn sports</p>
+                <p>I not only wanted to design a scalable system that could communicate with a WASM 3D rendering frontend, but I wanted to design the controller hardware and communication pipeline from scratch as well. The end result is a system that I control along all steps that is actually pretty fun!</p>
+            </div>
+        </section>
+
+        <section id="implementation">
+            <h2>Implementation</h2>
+            <div class="section-content">
+                <h3>System Architecture</h3>
+                <p>The platform follows a client-server architecture with three main components:</p>
+                <ul>
+                    <li><strong>Backend Server:</strong> A Rust-based server handling WebSocket connections with a custom binary protocol for efficient communication</li>
+                    <li><strong>Hardware Controller:</strong> Raspberry Pi Zero with two buttons and an MPU6050 accelerometer/gyroscope that connects to the server as a WebSocket client.</li>
+                    <li><strong>Web Frontend:</strong> WebAssembly-compiled games using the Bevy game engine that receive controller data via WebSocket and updates its game state</li>
+                </ul>
+
+                <h3>Hardware Controller</h3>
+                <p>The physical controller is built around a Raspberry Pi Zero with the following components:</p>
+                <ul>
+                    <li>Two pushbuttons (A and B) for primary inputs</li>
+                    <li>Accelerometer for motion detection and tilt sensing</li>
+                    <li>Gyroscope for precise rotation tracking</li>
+                    <li>Portable power bank for wireless operation (it was quick and easy)</li>
+                </ul>
+
+                <p>The firmware uses asynchronous interrupts for button presses and sensor data collection. All inputs are piped into a single consumer channel that batches and sends data packets to the server in sequential order, ensuring consistent input timing and reducing network overhead.</p>
+
+
+                <h3>Game Engine and Bowling Implementation</h3>
+                <p>The bowling game was developed using the Bevy game engine, compiled to WebAssembly for browser execution. The implementation includes:</p>
+                <ul>
+                    <li>Physics-based bowling ball mechanics with proper collision detection</li>
+                    <li>2.5D sprite rendering with custom-drawn assets</li>
+                    <li>Real-time controller input processing for aiming and power calculation</li>
+                    <li>Pass-and-play multiplayer support</li>
+                    <li>JavaScript-to-WASM communication bridge for game configuration</li>
+                </ul>
+
+                <p>The game uses two axes of rotation from the controller for aiming and calculates throw speed based on the acceleration data. The physics simulation handles pin collisions and scoring automatically based on standard bowling rules.</p>
+
+                <p>Overall, I'm super happy with how my little game architecture turned out, it was a rewarding project that was super fun to play with some of my friends. I'm looking forward to using the system I already have in place to add more games and functionality in the future :)</p>
+            </div>
+        </section>
+
+
+        <section id="links">
+            <h2>Related Links</h2>
+            <div class="links-section">
+                <a href="https://github.com/BradenEverson/wasm-spjorts">GitHub Repository</a>
+            </div>
+        </section>
+        <footer></footer>
+    </body>
+</html>
