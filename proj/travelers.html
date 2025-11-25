@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>travelers - Braden Everson</title>
+        <link rel="stylesheet" href="../style.css"/>
+    </head>
+    <body>
+        <a href="../index.html" class="back-link">← Back to all projects</a>
+
+        <header>
+            <h1>travelers</h1>
+            <p class="project-description">Interpreted WASM Battle Royale</p>
+        </header>
+
+        <img src="./img/arena.png" alt="4 players fighting" class="project-image">
+        <p class="image-caption">The battlefield. Red: your player. Purple: Enemies. Blue: Storm. Brown: Wood. Gray: Rock</p>
+
+        <section id="motivation">
+            <h2>Motivation</h2>
+            <div class="section-content">
+                <p>As I began learning more and more about interpreters and language design, a single idea kept entering my mind. I remembered first learning to code in elementary school, where we would use a language like python to help some robot or duck navigate through a puzzle. Wouldn't it be awesome if you would instead program this animal to *fight*</p>
+                <p>Battle royale games are pretty popular nowadays, but I am not very good at them. Why not combine something I am pretty good at (random language design) with a battle royale so I can finally be at the top of a leaderboard.</p>
+                <p>This is the idea that would eventually become <code>travelers</code>, an interpreted language run through WASM to update DOM events happening in a canvas. This canvas would simulate a cellular automata style arena where different programs written by users would control different players, ultimately leading to a glorious battle.</p>
+            </div>
+        </section>
+
+        <section id = "rules">
+            <h2>Gameplay Rules</h2>
+            <div class="section-content">
+                <ul>
+                    <li>Upon entering the site, players are prompted to enter the training dojo. This area allows them to play around with their program logic script and attempt to create the best battler of them all</li>
+                    <li>When players leave the dojo, they can name their fighter and enter them into the arena</li>
+                    <li>The arena is covered with trees and rocks, and is slowly being consumed by a storm that deals ticking damage to any players in its area.</li>
+                    <li>Wood can be chopped down if a player attacks it, using 5 wood they can place a trap that harms other players</li>
+                    <li>Players can attack other players, shooting them far back into a direction and potentially inside the storm</li>
+                    <li>The last player standing wins</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="implementation">
+            <h2>Implementation</h2>
+            <div class="section-content">
+                <p>Travelers is built around a core interpreter written in Zig that compiles to WebAssembly, creating a sandboxed execution environment where player scripts can run safely while maintaining high performance. The entire system is designed around a deterministic game loop that ensures consistent behavior across all clients.</p>
+
+                <h3>FightScript Language Design</h3>
+                <p>FightScript is a custom C-style language designed specifically for robot control in the battle royale environment. The language supports:</p>
+
+                <div class="architecture-diagram">
+                    <pre>
+Language Features:
+• Variables and basic arithmetic
+• While loops and conditional statements
+• Function declarations and calls
+• Built-in game actions: move, peek, attack, trap
+• Directional parameters: up, down, left, right
+                    </pre>
+                </div>
+
+                </div>
+
+                <div class="architecture-diagram">
+                    <pre>
+Game Tick Sequence:
+1. Storm Calculation - Update safe zone boundaries
+2. Robot Execution - Run each player's script
+3. Action Resolution - Process moves, attacks, traps in priority order
+4. Damage Application - Apply storm damage and trap triggers
+5. Render Update - Update DOM with new game state
+                    </pre>
+                </div>
+
+                <h3>Dojo Training Environment</h3>
+                <p>The 32x32 training dojo provides a sandboxed environment for testing scripts before entering the battlegrounds. It features:</p>
+                <ul>
+                    <li>Customizable environment placement (wood, rock, enemy bots)</li>
+                    <li>Syntax highlighting and error detection</li>
+                    <li>Step-through debugging with variable inspection</li>
+                    <li>Performance profiling to optimize script efficiency</li>
+                </ul>
+
+                <img src="./img/training.png" alt="Training in the dojo" class="project-image">
+                <p class="image-caption">A player training their script in the dojo</p>
+
+                <h3>Leaderboard and Multiplayer</h3>
+                <p>The leaderboard system tracks script performance across multiple battle royale simulations. Each script is evaluated against a diverse set of opponents, with rankings based on survival time, kills, and resource management efficiency. The simulation runs entirely client-side using the same deterministic engine.</p>
+            </div>
+        </section>
+
+
+        <section id="links">
+            <h2>Related Links</h2>
+            <div class="links-section">
+                <a href="https://github.com/BradenEverson/travelers">GitHub Repository</a>
+                <a href="https://bradeneverson.github.io/travelers">Play it yourself!</a>
+            </div>
+        </section>
+        <footer></footer>
+    </body>
+</html>
