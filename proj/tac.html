@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>tac - Braden Everson</title>
+        <link rel="stylesheet" href="../style.css"/>
+    </head>
+    <body>
+        <a href="../index.html" class="back-link">← Back to all projects</a>
+
+        <header>
+            <h1>tac</h1>
+            <p class="project-description">Three Address Codes and Register Allocation from scratch</p>
+        </header>
+
+        <section id="motivation">
+            <h2>Motivation</h2>
+            <div class="section-content">
+                <p>Compilers are something that have always fascinated me. As I went deeper into my time as a student, the kinds of problems that exist in that world just always seemed so exciting and challenging. As such, I wanted to move past interpreter space and get into compilers and optimization more.</p>
+                <p>This project was my first dive into the basics of IR and Register Allocation, with a simple arithmetic language that supports mathematical expressions and jumping. The final code generated is NASM compatible ASM.</p>
+            </div>
+        </section>
+
+        <section id="implementation">
+            <h2>Implementation</h2>
+            <div class="section-content">
+                <h3>Architecture Overview</h3>
+                <p>The TAC compiler follows a traditional multi-stage compilation pipeline:</p>
+
+                <div class="architecture-diagram">
+                    <pre>
+Source Code → Tokenizer → Token Stream → Parser → AST → TAC Generator → TAC Stream → Register Allocator → TAC Stream w/ Context → Assembly
+                    </pre>
+                </div>
+
+                <p>The Tokenizer and Parser are both nothing amazing, just thrown together so I could get down to the new stuff I hadn't touched yet:</p>
+
+                <h3>1. Three Address Code Generation</h3>
+                <p>The IR generator transforms the AST into Three Address Code (TAC) intermediate representation:</p>
+                <ul>
+                    <li>Converts AST expressions into sequences of simple operations with at most three operands</li>
+                    <li>Introduces temporary variables to hold intermediate computation results</li>
+                    <li>Produces a linear sequence of <code>ThreeAddressCode</code> instructions</li>
+                    <li>Each TAC instruction has an operator and up to two operands (literals, references, or variables)</li>
+                </ul>
+
+                <h3>2. Register Allocation</h3>
+                <p>The register allocator maps virtual temporaries to physical CPU registers using a graph coloring approach:</p>
+                <ul>
+                    <li>Analyzes liveness of values across the instruction stream</li>
+                    <li>Uses 14 available x86-64 registers (rax, rbx, rcx, rdx, rsi, rdi, r8-r15)</li>
+                    <li>Implements a simplified version of linear scan register allocation</li>
+                    <li>Computes live ranges and allocates registers based on instruction dependencies</li>
+                    <li>Spills to memory when registers are exhausted (though with 14 registers this is rare for the simple cases I was testing)</li>
+                </ul>
+
+                <h3>3. Assembly Generation</h3>
+                <p>The assembler translates register-allocated TAC instructions to NASM-compatible x86-64 assembly:</p>
+                <ul>
+                    <li>Maps TAC operations to their x86-64</li>
+                    <li>Generates proper instruction sequences with register operands</li>
+                    <li>Creates a complete NASM assembly file with proper sections and system call exit</li>
+                </ul>
+            </div>
+
+            <p>Overall, this project was a great start in the world of compilers, bridging me further from AST land to an optimized binary. I'm looking forward to my next step towards this world ;)</p>
+        </section>
+
+        <section id="links">
+            <h2>Related Links</h2>
+            <div class="links-section">
+                <a href="https://github.com/BradenEverson/tac">GitHub Repository</a>
+            </div>
+        </section>
+        <footer></footer>
+    </body>
+</html>
