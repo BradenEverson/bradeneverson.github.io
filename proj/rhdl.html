@@ -121,6 +121,75 @@
                 <p>And just like that, we have created a circuit graph! This is great because it both combines all the expressions from our parsing step into a single circuit that can be used later, and it also is a great area for translating from some higher level VHDL statements into their digital logic equivalents, allowing us to implement some more complex features without needing to change any of the later steps.</p>
 
                 <h3>3. Mapping to a 3D Grid Circuit</h3>
+                <p>Oh boy, this section's going to be a lot. Coming in to this subsystem, we have a flat circuit graph representation of the desired logical behavior that our original VHDL was describing. Coming out of this system, we need a 3D functional representation of this system using Minecraft blocks. We have to take into account all of the problems that come with building something real, including signal strength, positioning of gates, input to output pathfinding, collision mitigation, gate resizing based on child sizes, and so much more.</p>
+
+                <h4>3.1. The Basics</h4>
+                <p>Before we get too overwhelmed let's just start with what we need: a 3D graph that can have Minecraft blocks 'placed' within it. As such, we will describe a new struct <code>CircuitEntity</code> as a collection of blocks with points. The positional data about a block will be stored through a Point -> Block HashMap, and blocks will be defined as a tagged union with additional metadata based on what the block needs. We will also store inputs and outputs as lists of Points, which will be useful for combining circuits by strining outputs of one to inputs of another. Finally, we'll also store the total size of the circuit by always tracking the most extreme points that may push past the previous size boundaries.</p>
+
+                <h4>3.2. The Gates</h4>
+                <p>Our circuit will always be composed out of smaller basic gates: AND, OR, NOT and XOR. As such, these gates can be almost hardcoded as convenience functions that let us very easily create one when need be. As such, we will create methods that return a new <code>CircuitEntity</code> object for each of them. One important design choice we'll make for later is to allow for a "padding" argument in these gate constructors, this will greatly help us later.</p>
+
+                <p>As touched on earlier, Minecraft is Turing complete in that each of these gates can have their truth tables represented by some configuration of Redstone wire and the many components Minecraft lets you have access to. These components are as follows:</p>
+
+                <ul>
+                    <li>Repeaters: they take in a Redstone signal from one end and repeat it with the highest strength at the output. There is a configurable delay you can add between the propagation of input to output, with the lowest delay being a single tick of Redstone activity. This component is very important for our giant circuits because a redstone signal dies over the span of 15 or so blocks. Placing repeaters will allow this signal to go further at the cost of an increasted propagation delay.</li>
+
+                    <li>Comparators: A comparator... I am less confident in my explanation. They have 3 inputs: the back and both sides and send an output based on the mode they are in. There are two modes: subtraction and comparison. Subtraction outputs a 1 if the back input is greater than the max of either side's input. Comparision mode will output the back input if it is greater than or equal to both side inputs.</li>
+
+                    <li>Redstone Torch: A power source!</li>
+
+                </ul>
+
+                <p>From these components, we can generate any gate as a construction of them.</p>
+
+                <p>Redstone Wire: *</p>
+                <p>Redstone Torch: !</p>
+                <p>Repeater: #</p>
+                <p>Comparator: %</p>
+
+                <p>OR Gate:</p>
+                <div class="architecture-diagram">
+                    <pre>
+                         *
+                     *****
+                     #   #
+                     *   *
+                    </pre>
+                </div>
+
+                <p>NOT Gate:</p>
+                <div class="architecture-diagram">
+                    <pre>
+                         *
+                        *%
+                        #!
+                    </pre>
+                </div>
+
+                <p>XOR Gate:</p>
+                <div class="architecture-diagram">
+                    <pre>
+                       *
+                      **
+                    **%%**
+                    ******
+                    #    #
+                    </pre>
+                </div>
+
+                <p>AND Gate:</p>
+                <div class="architecture-diagram">
+                    <pre>
+                        *
+                    !%*#%#*%!   
+                     #     #
+                    </pre>
+                </div>
+
+                <p>Do I understand exactly how all of these gates work? Not at all. Did I see some diagrams online and play around with them until I had gates you could dynamically pad? Yes!</p>
+
+                <h4>3.3. Combining Gates</h4>
+
 
                 <h3>4. Exporting to NBT</h3>
 
