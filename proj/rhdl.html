@@ -93,6 +93,32 @@
                 <p>Finally, before we move into the next IR, there is one final pass through of all <code>TopLevel</code>s we must do to make things easier. We will combine all Entities and Architectures that are referring to the same system (same name) so that we have all input/output names and mappings in one nice package for the next subsystem to consume.</p>
 
                 <h3>2. Circuit Intermediate Representation</h3>
+                <p>Now that we have a distilled version of the *intent* of the hardware description, we can work our way towards a representation that is easier for us to translate into a 3D Minecraft circuit. As such, all we really need to do on this step is translate our high level Expression ASTs into concrete circuit entities that point to same inputs. I implemented this circuit as a Graph-like structure using a SlotMap as the underlying data structure, meaning we just pass around Graph Indices instead of node pointers (a pattern I learned from the more strict world of Rust that I just like for problems like this now). As such, the <code>Circuit</code> API allows us to request a type of gate to be created, and returns the Gate ID of that created gate. This makes chained graph construction super nice, as can be illustrated in the pseudocode below:</p>
+
+                <div class="architecture-diagram">
+                    <pre>
+            circuit = new Circuit();
+
+            A = circuit.input("A");
+            B = circuit.input("A");
+
+            C = circuit.and(A, B);
+
+            not_C = circuit.not(C);
+
+            output = circuit.output(not_C);
+                    </pre>
+                </div>
+
+                <p>I mean that just feels great the write out, and luckily for us our AST walker agrees. Translating from high level expression into a circuit is as simple as walking the expr tree recursively depending on the expression type:</p>
+
+                <ul>
+                    <li>If we're a binary expr, first eval both left and right, get their Gate IDs and then create a new gate with those IDs as operands</li>
+                    <li>If we're unary, do the same but with only the single child expr</li>
+                    <li>If we're an input, just return the ID of the input that was already added during the Entity definition</li>
+                </ul>
+
+                <p>And just like that, we have created a circuit graph! This is great because it both combines all the expressions from our parsing step into a single circuit that can be used later, and it also is a great area for translating from some higher level VHDL statements into their digital logic equivalents, allowing us to implement some more complex features without needing to change any of the later steps.</p>
 
                 <h3>3. Mapping to a 3D Grid Circuit</h3>
 
