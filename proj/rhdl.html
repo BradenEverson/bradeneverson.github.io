@@ -189,6 +189,17 @@
                 <p>Do I understand exactly how all of these gates work? Not at all. Did I see some diagrams online and play around with them until I had gates you could dynamically pad? Yes!</p>
 
                 <h4>3.3. Combining Gates</h4>
+                <p>The next logical step is to take our smaller gates and create some way of connecting and combining them together. This is where tracking inputs and outputs in a <code>CircuitEntity</code> comes in handy! We can create a method that will take two <code>CircuitEntitiy</code>s and wire the output of one to the input of another, modifying the second circuit. By doing this, all we have to do is shift the second circuit entirely over until the input matches the same X coordinate as the output of the other circuit, and then shift the circuit up along the Z axis until no collisions occur. After this, we can do some simple pathfinding to run a redstone wire between the points.</p>
+
+                <p>This works perfectly fine ASSUMING that the parent gate (the one getting it's input wired to) has a large enough padding so that any other gate going to another input of the parent gate would not be caught in some form of collision, which would be no fun. To solve this, we can use the recursive power of our circuit definition to create some dynamic rules for the padding of a gate!</p>
+
+                <ul>
+                    <li>For input gates, we only need a padding of 1 block on both sides so nothing overlaps with the wires</li>
+                    <li>For Binary gates, we need some specific padding to the gate size plus the largest padding necessary from either child to ensure that child doesn't overlap the other child</li>
+                    <li>For unary gates, we simple need the maximum between the gate's size and the size of the child's padding</li>
+                </ul>
+
+                <p>This creates a nice little system that allows us to always know how much padding each gate needs before we create it, allowing us to avoid those nasty collisions! This does make the circuit ultimately bigger than an optimal version would be, but regardless I was quite happy with this solution.</p>
 
 
                 <h3>4. Exporting to NBT</h3>
