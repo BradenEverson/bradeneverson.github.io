@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RHDL - Braden Everson</title>
+        <link rel="stylesheet" href="../style.css"/>
+    </head>
+    <body>
+        <a href="../index.html" class="back-link">← Back to all projects</a>
+
+        <header>
+            <h1>RHDL</h1>
+            <p class="project-description">VHDL to Minecraft Redstone Circuit Compiler</p>
+        </header>
+
+        <div class = "video-wrapper">
+            <iframe 
+                src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7411092662750990336?compact=1" 
+                frameborder="0"
+                title="RHDL Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        <p class="video-caption">RHDL Demo</p>
+
+        <section id="motivation">
+            <h2>Motivation</h2>
+            <div class="section-content">
+                <p>I've always been interested in is the Turing Completeness of seemingly simple mechanics within video games. For example, Minecraft's Redstone wiring system can construct the core boolean logic gates and therefore can represent practically any computational system. With this as an inspiration, I set out 2 months ago to create RHDL, a compiler that uses a VHDL hardware description frontend to emit Minecraft Structure Entity files that represent the digital logic circuit being described. These files are serialized under the Named Binary Tag (NBT) file format the game uses, and can be used in any world in vanilla Minecraft. </p>
+            </div>
+        </section>
+        <section id="implementation">
+            <h2>Implementation</h2>
+            <div class="section-content">
+                <h3>Core Concepts</h3>
+                <p>Before we get too down and in the weeds with the implementation, there are a few things we should go over. First, VHDL is one of the standard hardware description languages for modern hardware design. It's syntax allows you to define the "black box" of a system as well as the underlying architecture driving that black box through a multitude of different approachs, including logical statements, direct mappings and if statement-style syntax.</p> 
+
+                <p>For example, if we wanted to create a circuit that detects if the input is the number 5 given a 3 bit input, we could write the following VHDL to define the API and architecture:</p>
+
+
+                <div class="architecture-diagram">
+                    <pre>
+                    entity FIVE_DETECTOR is
+                    port( A0, A1, A2   : in std_logic;
+                          Y            : out std_logic);
+                    end entity FIVE_DETECTOR;
+
+                    architecture LOGICAL of FIVE_DETECTOR is
+                        Y <= A0 and not A1 and A2;
+                    end architecture LOGICAL;
+                    </pre>
+                </div>
+
+                <p>To start, this syntax is what I aim to implement in the RHDL system. There are some more advanced features of VHDL that I would love to have, but I plan to work through after the core system is proven out.</p>
+
+                    
+                <h3>Architecture Overview</h3>
+                <p>This entire system being designed from scratch required a collection of sub-modules all working together. The goal of translating hardware descriptions directly into a 3D entity in a video game is obviously very involved, and therefore benefits from several intermediate representations that make our jobs easier:</p>
+
+                <div class="architecture-diagram">
+                    <pre>
+                [VHDL source] => [High Level Entity and Architectures] => [Gate Level Circuit] \\
+                                                                                                || 
+                                               [NBT Entity] <= [Minecraft Block Description] <=//
+                    </pre>
+                </div>
+
+                <p>In essence, we need to parse our VHDL, represent the output mappings as a boolean logic circuit, map this circuit into 3D grid space composed up out of the different gates, and finally generate the NBT entity file that Minecraft expects. Simple, right?<p/>
+
+                <h3>1. Parsing VHDL</h3>
+                <p>Parsing VHDL was actually a very enjoyable process, as the language is very explicit in the different types of statements that may exist. To start, after tokenizing the input file into keywords and operators we actually care about, parsing is as simple as reading the first word of any top-level description, and following the unique rules for that statement. Both architecture and entity blocks begin by literally saying their name, and end by saying end {their name}! This is mangificent!</p>
+
+                <p>Thanks to this lovely gift from the IEEE 1064 Specification, we can also derive what the first AST we parse this into should look like. Our desired output should be a list of these <code>TopLevel</code> descriptions, being a variant of either <code>entity</code> or <code>architecture</code>. For an entity, we should track the name as well as all inputs and outputs with their specific data type (std_logic is a single bit, std_logic_vector describes a list with a specific set size). Architectures should then track their name and the name of what entity they implement, as well as a list of all mappings from input(s) to output(s) as described by a more traditional AST.</p>
+
+                <p>This makes parsing a very straightforward process, as most of the work we need to do is just asserting certain tokens and keywords are in the proper order before doing some simple recursive descent parsing on the *worst* branches. For instance, for the statement <code>A <= B and not C;</code> we would create a mapping to the AST:</p>
+
+                <div class="architecture-diagram">
+                    <pre>
+                                                       [AND]
+                                                         |
+                                                     ---------
+                                                    /         \ 
+                                                   [B]       [NOT]
+                                                               |
+                                                              [C]
+                    </pre>
+                </div>
+
+                <p>If we wanted to evaluate this as some sort of VHDL interpreter, we could simply do a tree-walk. But we don't want to interpret, we want to build a circuit... which can also just be done through a recursive tree-walk :D</p>
+
+                <p>Finally, before we move into the next IR, there is one final pass through of all <code>TopLevel</code>s we must do to make things easier. We will combine all Entities and Architectures that are referring to the same system (same name) so that we have all input/output names and mappings in one nice package for the next subsystem to consume.</p>
+
+                <h3>2. Circuit Intermediate Representation</h3>
+
+                <h3>3. Mapping to a 3D Grid Circuit</h3>
+
+                <h3>4. Exporting to NBT</h3>
+
+            </div>
+        </section>
+
+
+        <section id="links">
+            <h2>Related Links</h2>
+            <div class="links-section">
+                <a href="https://github.com/BradenEverson/redstone_description_language">GitHub Repo</a>
+                <a href="https://www.linkedin.com/posts/braden-everson_one-thing-ive-always-been-interested-in-activity-7411092737825013760-fqFs?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC2VricB4W-_aOdQGZxX9BNfp-9xeYKLmE0">LinkedIn post</a>
+            </div>
+        </section>
+        <footer></footer>
+    </body>
+</html>
