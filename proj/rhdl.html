@@ -201,6 +201,39 @@
 
                 <p>This creates a nice little system that allows us to always know how much padding each gate needs before we create it, allowing us to avoid those nasty collisions! This does make the circuit ultimately bigger than an optimal version would be, but regardless I was quite happy with this solution.</p>
 
+                <h4>3.4. Input Grids</h4>
+
+                <p>We now have a system where walking a circuit will generate all of the gates we need as 3D Minecraft <code>CircuitEntity</code>s. We could stop here and we would technically have succeeded in our goal of mapping VHDL functionality to Minecraft Redstone. But there's one more thing that would make using our system much more convenient, an Input Grid.</p>
+
+                <p>Take for instance a Full Adder component. This module has 3 inputs, Bit A, Bit B and the Carry Bit CIN from the previous adder for a ripple carry adder. It has two outputs it derives, Carry Out and the Sum bit of A B and CIN. These outputs both depend on our 3 inputs several different times, creating a resultant series of gates that require multiple different points of input for a single one of these input bits. It would be great if we could instead have our 3 inputs on 1 side, and automatically route them to all spots that expect that input.</p>
+
+                <p>Let's do it.</p>
+                
+                <p>The basic concept is pretty simple to track. Once we have our final circuit fully generated, we'll just shift it up the Z axis enough times to fit some inputs, and then run redstone wire along the X axis below the circuit, with a lever at the start of each wrire for our input. For example, let's say we generated a circuit that just gives A OR B. The input grid and gate would start off as:</p>
+
+                <div class="architecture-diagram">
+                    <pre>
+                         *
+                     *****
+                     #   #
+                    B*  A*
+
+                A*********
+
+                B*********
+
+
+                    </pre>
+                </div>
+
+                <p>Now all we need to do is connect! Except.. we can't just do that. Because we'd collide B's wire with A...</p>
+
+                <h4>3.5. Bridging</h4>
+
+                <p>To handle cases like the above where a wire collision is *unavoidable*, we need to branch out into the 3rd dimension. Our pathfinding logic will now check for if the current point we're going to move to is currently occupied or not. If it is, we'll push up our current position by 1 y value, place a wool block below our wire, place another block above the obstruction and move along our way 2 y levels above. Once we see that the ground is safe again, we can do the opposite process and bridge down.</p>
+
+                <p>And just like that, after a couple weeks of debugging and collisions on larger level circuits, we were finally generating properly functional 3D circuit representations of VHDL files as Minecraft Redstone logic! We're in the home stretch, now all we need to do is emit this data in a format that Minecraft understands.</p>
+
 
                 <h3>4. Exporting to NBT</h3>
 
