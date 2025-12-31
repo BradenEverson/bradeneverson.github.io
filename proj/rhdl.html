@@ -237,6 +237,48 @@
 
                 <h3>4. Exporting to NBT</h3>
 
+
+                <p>The Named Binary Tag (NBT) format was designed by Minecraft's original creator to be the data storage format for all saved components of a Minecraft world, from chunk defintions to (what we're interested in) structures. The original spec was originally a text file found on Minecraft's website, but has since been removed and <a href = "https://github.com/acfoltzer/nbt/blob/master/NBT-spec.txt">can only be found archived</a>. It's a relatively simple binary format, with the core packets being defined by a single byte tag type, an optional name, and a payload defined by the tag type. There are 11 total tags that range in complexity:</p>
+
+                <ol>
+                    <li>Tag_end: Denotes the end of a list or compound</li>
+                    <li>Tag_Byte: Single byte</li>
+                    <li>Tag_Short: A signed 16 bit big-endian integer</li>
+                    <li>Tag_Int: A signed 32 bit big-endian integer</li>
+                    <li>Tag_Long: A signed 64 bit big-endian integer</li>
+                    <li>Tag_Float: A 32 bit floating point value</li>
+                    <li>Tag_Double: A 64 bit floating point value</li>
+                    <li>Tag_Byte_Array: A list of bytes with a specified 32-bit unsigned length</li>
+                    <li>Tag_String: A list of bytes with a specified 16-bit unsigned length</li>
+                    <li>Tag_List: A list of a specific tag type where the tag and number of elements is specified</li>
+                    <li>Tag_Compound: A nested list of any Tag, a Compound ends with Tag_end</li>
+                </ol>
+
+                <p>The final note of the spec is that after this initial binary representation is constructed, the entire file is GZIP'd to compress it further and save space. Cool.</p>
+
+                <h4>4.1. Basic Spec Implementation</h4>
+
+                <p>To better understand each of these formats, I first wrote a parser before going the other way. This allowed me to generate a known valid NBT file, parse it, and then serialize it again to ensure I had both steps working properly. The definition for both parsing and serializing the NBT format was a very fun recursive method that matched on the tag type byte and reacted accordingly. For whatever reason I decided not to use an arena allocator here for the elements, which made me also define a recursive deinitialization method that would ensure the children of lists and compounds did not leak.</p>
+
+
+                <h4>4.2. Circuit to NBT</h4>
+
+                <p>Now that I had utilities in place for creating NBT files, I had to learn the actual format that a Minecraft structure entity expects. Thanks to this <a href="https://irath96.github.io/webNBT/">amazing online NBT visualizer by irath96</a>, I was able to load a structure I generated from Minecraft to see what form the NBT takes. The root tag was a compound of the following components:</p>
+
+                <ul>
+
+                    <li>size: a list of 3 IntTags describing the length, height and width</li>
+                    <li>palette: a collection of every block in every state used by the structure. This allows us to reference indices in the palette when "placing" blocks, allowing us to just use an integer instead of a full blown object. The palette entries contain a string for the name, as well as a compound list of properties specific to the object (direction facing for directional objects like the repeater).</li>
+                    <li>blocks: A compound of objects composed of the palette ID they represent as well as the xyz location relative to the bottom right corner of the structure.</li>
+
+                </ul>
+
+                <p>With this structure in mind, the plan I had was to first generate the palette by creating a hashset of all unique block states used by the circuit. Then as we build up the blocks, the index of that element in the hashset would correlate directly to the index in the exported palette. The state of a block was a tagged union so that blocks such as the comparator could have their unique properties (direction facing and if we're in subtract or compare mode). Once this was all up and working, the NBT binary file generated was properly formed and loaded into Minecraft without a hitch!</p>
+
+                <h3>5. Conclusions</h3>
+
+                <p>Overall, with this project in a functioning state, I am super happy with the system I was able to construct. It taught me valuable lessons in separation of concerns and creating separate subsystems to keep systems small and testable in and of themselves. This is by far the coolest codebase I have been able to work on, and for it all to go towards such a silly end product is all the more rewarding. I see a lot of RHDL work in my future, with new VHDL features being implemented, and work to minimize circuit propagation times and size, but overall I am happy with the first steps I had to make to make such a fun project a reality :)</p>
+
             </div>
         </section>
 
