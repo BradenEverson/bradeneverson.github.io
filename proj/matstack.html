@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>matstack - Braden Everson</title>
+        <link rel="stylesheet" href="../style.css"/>
+    </head>
+    <body>
+        <a href="../index.html" class="back-link">← Back to all projects</a>
+
+        <header>
+            <h1>MatStack (THIS BLOG IS A WORK IN PROGRESS!!!)</h1>
+            <p class="project-description">A poor man's GPU from scratch</p>
+        </header>
+
+        <section id="motivation">
+            <h2>Motivation</h2>
+            <div class="section-content">
+                <p>The first major project I ever worked on started as my introduction to Rust in 2023. Being a computer science undergrad at a university that emphasizes ML and Deep Learning, my first project for fun (which you will not see on this blog) was a deep learning backwards and forwards runtime from scratch. It was absolutely awful, but it has a special space in my heart. Matrices were represented as Vectors of Vectors, in other words extraordinarily memory inefficient. It only supported linear layers and activations such as ReLu and Sigmoid, yet through it all I still grew a passion for it and a delusional idea for what it's future might be</p>
+
+                <p>A couple months after I started this inefficient project, a couple of developers who actually know what they were doing saw my project and reached out for a bit of a rebranding. This became my first true dive into a graph-based ML compiler. It wrote to XLA as a backend, and through no real work of my own supported a whole bunch of cool operations and tensor math I had never seen before (I pretty much only worked on constant folding).</p>
+
+                <p>After a couple years of learning and silly side projects (not to say that I am ever going to not work on silly side projects), I started up MatStack as my tried and true attempt at an ML Compiler. I didn't just stop at compiling however, as my Computer Engineering minor has introduced me to the awesome world of computer architecture! As such, my goal with MatStack was to create 1. A language frontend like python that can describe tensor operations, 2. A bytecode compiler that translates this language into tensor operations on a stack-based machine, 3. A stack-based virtual machine to run these instructions, and finally 4. A computer architecture that can run some MatStack bytecode on an FPGA and display the result.</p>
+            </div>
+        </section>
+        <section id="implementation">
+            <h2>Implementation</h2>
+            <div class="section-content">
+                <h3>The Core Steps</h3>
+                <p>This project really can be split into 3 subprojects that all depend on each other: The bytecode spec and Virtual Machine for Tensor Operations, the Compiler to this Bytecode, and finally the Computer Architecture. Woot woot! Before any of this, however, we need to start at the absolute root of this project: The good ol' fashioned tensor</p>
+
+                <h3>Tensors and Operations</h3>
+                <p></p>
+
+                <h3>Bytecode Spec</h3>
+                <p>The Virtual Machine is first built</p>
+
+                <h3>Bytecode Compiler and Language Frontend</h3>
+                <p>The ultimate goal of the language frontend is to present an easy Python-like interface for developers to express tensor operations. An example forward pass through two linear layers with a relu in between, L1 Regularization on the weight matrices, and MSE loss on the computed result versus an expected <code>y</code> can be expressed as:</p>
+                <div class="architecture-diagram">
+                    <pre>
+                    epsilon = 0.01
+
+                    x = [[-10], [1]]
+                    y = [[10], [5]]
+
+                    W = [[1, 0], [0, 1], [0, 0]]
+                    M = [[0, -1, 2], [1, 3, -5]]
+                    b = [[1], [2], [3]]
+                    c = [[-10], [10]]
+
+                    u = W @ x + b
+                    h = relu(u)
+
+                    v = M @ h + c
+                    L = sum((y - v)^2) / 2
+
+                    S1 = epsilon * sum(W^2)
+                    S2 = epsilon * sum(M^2)
+
+                    S = S1 + S2
+                    J = L + S
+
+                    debug(J)
+                    </pre>
+                </div>
+
+                <p>As previously mentioned, a lot is taken here from Python and Pytorch specifically, such as the <code>@</code> operator for matrix multiplication.</p>
+
+                <p>This syntax is defined through a recursive descent parser, my favorite parser to implement. We can express levels of operator precedence in this paradigm by expressing higher precedent operations as lower in a recursive nest of function calls. For example, to evaluate <code>b + W @ x</code>, we would first reach the addition or subtraction ast step, which would itself first call the lower matmul ast step to evaluate both sides of the <code>+</code> before creating the addition node in the ast, giving us an ast that will evaluate the matrix multiplication between <code>W</code> and <code>x</code> before adding a bias term <code>b</code></p>
+
+                <p>Parsers are something I am *very* familiar with (see RHDL, mao, tac, travelers, and many other projects not listed in this site). The next step, bytecode compiling, is something I had never done nor thought about before. Luckily, the power of recursively visiting an ast makes stack-based bytecode instructions relatively intuitive to reason about.</p>
+                <p>When we create the AST from this small language, traversing it creates intuitive translation rules into the VM bytecode. For example:</p>
+
+                <ul>
+                    <li>When a variable assignment expression is reached, we first evaluate the result instructions by performing their operations, then we can use a load_i with the next available scratch area slot to store that variable, and keep this index in a hashmap. Next time this variable is referenced, we evaluate it by performing a store_i and putting it back on the stack!</li>
+                    <li>When a binary expression is reached, lhs is evaluated and all necessary instructions are appended, then all of rhs's instructions are appended before then appending the instruction itself!</li>
+                </ul>
+
+                <p>This turns an AST expression such as <code>ADD(MATMUL(VARIABLE(W), VARIABLE(x)), VARIABLE(b))</code> into:</p>
+
+                <div class="architecture-diagram">
+                    <pre>
+                    STORE_I - 0 (load variable 0 (W) from scratch area)
+                    STORE_I - 1 (load variable 1 (x) from scratch area)
+                    MATMUL
+                    STORE_I - 2 (load variable 2 (b) from scratch area)
+                    ADD 
+                    </pre>
+                </div>
+
+                <p>The final compilation step we must perform for translating to our custom VM file spec is to create the constant pool. This is performed by taking all tensor literals created in the AST, performing a type check on them to ensure they have consistent dimensions across all axis, and finally serializing them into the constant pool section of the binary. After then appending in the header information, we have a MatStack program ready for the VM! <i>and soon to be ready for real hardware ;)</i></p>
+
+                <h3>Building an Architecture</h3>
+                <p></p>
+
+            </div>
+        </section>
+
+        <section id="links">
+            <h2>Related Links</h2>
+            <div class="links-section">
+                <a href="https://github.com/BradenEverson/matstack">GitHub Repo</a>
+            </div>
+        </section>
+        <footer></footer>
+    </body>
+</html>
